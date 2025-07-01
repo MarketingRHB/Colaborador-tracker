@@ -6,7 +6,7 @@ import {
 	TFolder,
 	normalizePath,
 } from "obsidian";
-import type FriendTracker from "@/main";
+import type CollaboratorTracker from "@/main";
 import type { ContactWithCountdown } from "@/types";
 
 class FolderSuggest extends AbstractInputSuggest<string> {
@@ -38,8 +38,8 @@ class FolderSuggest extends AbstractInputSuggest<string> {
 	}
 }
 
-export class FriendTrackerSettingTab extends PluginSettingTab {
-	constructor(app: App, private plugin: FriendTracker) {
+export class CollaboratorTrackerSettingTab extends PluginSettingTab {
+	constructor(app: App, private plugin: CollaboratorTracker) {
 		super(app, plugin);
 	}
 
@@ -103,7 +103,7 @@ export class FriendTrackerSettingTab extends PluginSettingTab {
 			});
 
 		const headerContainer = containerEl.createEl("div", {
-			cls: "friend-tracker-relationship-header",
+			cls: "collaborator-tracker-relationship-header",
 		});
 
 		headerContainer.createEl("h3", { text: "Relationship types" });
@@ -115,7 +115,7 @@ export class FriendTrackerSettingTab extends PluginSettingTab {
 				tempInput.type = "text";
 				tempInput.placeholder = "Enter relationship type";
 				tempInput.className =
-					"friend-tracker-modal-input relationship-type-input";
+					"collaborator-tracker-modal-input relationship-type-input";
 
 				// Replace button with input temporarily
 				button.buttonEl.replaceWith(tempInput);
@@ -163,7 +163,7 @@ export class FriendTrackerSettingTab extends PluginSettingTab {
 		);
 
 		const relationshipContainer = containerEl.createEl("div", {
-			cls: "friend-tracker-relationship-types",
+			cls: "collaborator-tracker-relationship-types",
 		});
 
 		this.plugin.settings.relationshipTypes.forEach((type) => {

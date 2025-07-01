@@ -1,17 +1,17 @@
-# Colaborador Tracker for Obsidian
+# Collaborator Tracker for Obsidian
 
-A plugin for Obsidian that helps you keep track of friends, family, and your interactions with them. Never forget a birthday or important detail about someone you care about.
+A plugin for Obsidian that helps you keep track of collaborators, family, and your interactions with them. Never forget a birthday or important detail about someone you care about.
 
 ## Inspiration
 
-This plugin was inspired by [Scott Stockdale's article on maintaining meaningful friendships](https://web.archive.org/web/20250409205126/https://entrepreneurscanparty.com/posts/how-to-be-a-more-awesome-friend). The core idea is that maintaining strong relationships requires a system for:
+This plugin was inspired by [Scott Stockdale's article on maintaining meaningful collaborations](https://web.archive.org/web/20250409205126/https://entrepreneurscanparty.com/posts/how-to-be-a-more-awesome-friend). The core idea is that maintaining strong relationships requires a system for:
 
 -   Tracking important dates and milestones
 -   Recording meaningful interactions
 -   Remembering personal details
 -   Making regular meaningful touchpoints
 
-Colaborador Tracker helps implement these relationship-building practices in a simple, organized way within Obsidian.
+Collaborator Tracker helps implement these relationship-building practices in a simple, organized way within Obsidian.
 
 ![image](https://github.com/user-attachments/assets/0f8ef3de-6c18-4813-a87a-1a7d5d1a680f)
 
@@ -62,7 +62,7 @@ Colaborador Tracker helps implement these relationship-building practices in a s
 
 1. Open Obsidian Settings
 2. Go to Community Plugins and disable Safe Mode
-3. Click Browse and search for "Colaborador Tracker"
+3. Click Browse and search for "Collaborator Tracker"
 4. Install the plugin and enable it
 
 ## Storage
@@ -76,7 +76,7 @@ All contact information is stored in markdown files with YAML frontmatter, makin
 
 ## Support
 
-If you encounter any issues or have feature requests, please visit the [GitHub repository](https://github.com/buzzguy/friend-tracker/issues).
+If you encounter any issues or have feature requests, please visit the [GitHub repository](https://github.com/buzzguy/collaborator-tracker/issues).
 
 ## Author
 

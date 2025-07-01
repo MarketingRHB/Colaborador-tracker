@@ -12,27 +12,27 @@ export class DeleteContactModal extends Modal {
 	onOpen() {
 		const { contentEl } = this;
 		contentEl.empty();
-                const plugin = (this.app as any).plugins.getPlugin("friend-tracker");
+                const plugin = (this.app as any).plugins.getPlugin("collaborator-tracker");
                 contentEl.createEl("h2", { text: plugin?.t("delete_contact") || "Delete contact" });
                 contentEl.createEl("p", {
                         text: plugin?.t("delete_confirm")?.replace("{name}", this.file.basename) || `Are you sure you want to delete ${this.file.basename}?`,
                 });
 
 		const buttonContainer = contentEl.createEl("div", {
-			cls: "friend-tracker-modal-buttons",
+			cls: "collaborator-tracker-modal-buttons",
 		});
 
 		// Cancel button
                 const cancelButton = buttonContainer.createEl("button", {
                         text: plugin?.t("cancel") || "Cancel",
-                        cls: "friend-tracker-modal-button",
+                        cls: "collaborator-tracker-modal-button",
                 });
 		cancelButton.addEventListener("click", () => this.close());
 
 		// Delete button
                 const deleteButton = buttonContainer.createEl("button", {
                         text: plugin?.t("delete") || "Delete",
-                        cls: "friend-tracker-modal-button friend-tracker-modal-button-danger",
+                        cls: "collaborator-tracker-modal-button collaborator-tracker-modal-button-danger",
                 });
 		deleteButton.addEventListener("click", async () => {
 			await this.onDelete();

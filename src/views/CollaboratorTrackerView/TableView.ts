@@ -1,9 +1,9 @@
 import { setIcon } from "obsidian";
-import type { FriendTrackerView } from "./index";
+import type { CollaboratorTrackerView } from "./index";
 import type { ContactWithCountdown, SortConfig } from "@/types";
 
 export class TableView {
-	constructor(private view: FriendTrackerView) {}
+	constructor(private view: CollaboratorTrackerView) {}
 
 	async render(
 		container: HTMLElement,
@@ -12,13 +12,13 @@ export class TableView {
 	) {
 		// Create header and add contact button container
                 const headerContainer = container.createEl("div", {
-                        cls: "friend-tracker-header",
+                        cls: "collaborator-tracker-header",
                 });
-                headerContainer.createEl("h2", { text: this.view.plugin.t("friend_tracker") });
+                headerContainer.createEl("h2", { text: this.view.plugin.t("collaborator_tracker") });
 
                 const searchInput = headerContainer.createEl("input", {
                         type: "text",
-                        cls: "friend-tracker-search-input",
+                        cls: "collaborator-tracker-search-input",
                         placeholder: this.view.plugin.t("search_placeholder"),
                 }) as HTMLInputElement;
                 searchInput.value = this.view.searchQuery;
@@ -40,19 +40,19 @@ export class TableView {
 
                 const addButton = headerContainer.createEl("button", {
                         text: this.view.plugin.t("add_contact"),
-                        cls: "friend-tracker-button button-outlined",
+                        cls: "collaborator-tracker-button button-outlined",
                 });
 		addButton.addEventListener("click", () =>
 			this.view.openAddContactModal()
 		);
 
 		const content = container.createEl("div", {
-			cls: "friend-tracker-content",
+			cls: "collaborator-tracker-content",
 		});
 
 		if (contacts.length === 0) {
 			const emptyState = content.createEl("div", {
-				cls: "friend-tracker-empty-state",
+				cls: "collaborator-tracker-empty-state",
 			});
                         emptyState.createEl("p", {
                                 text: this.view.plugin.t("no_contacts"),
@@ -62,12 +62,12 @@ export class TableView {
 
 		// Create scrollable container for table
 		const tableContainer = content.createEl("div", {
-			cls: "friend-tracker-table-container",
+			cls: "collaborator-tracker-table-container",
 		});
 
 		// Create table for contacts
 		const table = tableContainer.createEl("table", {
-			cls: "friend-tracker-table",
+			cls: "collaborator-tracker-table",
 		}) as HTMLTableElement;
 
 		this.renderTableHeader(table, sort);
@@ -99,7 +99,7 @@ export class TableView {
 
 			if (sortable) {
 				const button = th.createEl("button", {
-					cls: "friend-tracker-sort-button",
+					cls: "collaborator-tracker-sort-button",
 				});
 
 				// Add text span
@@ -163,18 +163,18 @@ export class TableView {
 			});
 			row.createEl("td", {
 				text: contact.relationship || "N/A",
-				cls: "friend-tracker-relationship-cell",
+				cls: "collaborator-tracker-relationship-cell",
 			});
 			row.createEl("td", { text: contact.lastInteraction || "" });
 
 			// Actions cell
 			const actionsCell = row.createEl("td", {
-				cls: "friend-tracker-actions",
+				cls: "collaborator-tracker-actions",
 			});
 
 			// Delete button
                         const deleteButton = actionsCell.createEl("button", {
-                                cls: "friend-tracker-delete-button",
+                                cls: "collaborator-tracker-delete-button",
                                 attr: { "aria-label": this.view.plugin.t("remove_contact") },
                         });
 			setIcon(deleteButton, "trash");
@@ -188,7 +188,7 @@ export class TableView {
 
 	private renderNameCell(contact: ContactWithCountdown): HTMLElement {
 		const cell = document.createElement("td");
-		cell.className = "friend-tracker-name-cell";
+		cell.className = "collaborator-tracker-name-cell";
 
 		if (contact.daysUntilBirthday !== null) {
 			if (contact.daysUntilBirthday === 0) {

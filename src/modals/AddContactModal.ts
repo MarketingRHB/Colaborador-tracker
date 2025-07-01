@@ -1,12 +1,12 @@
 import { App, Modal, Notice } from "obsidian";
-import type FriendTracker from "@/main";
+import type CollaboratorTracker from "@/main";
 import { stringifyYaml } from "obsidian";
-import { VIEW_TYPE_FRIEND_TRACKER } from "@/views/FriendTrackerView";
-import { FriendTrackerView } from "@/views/FriendTrackerView";
+import { VIEW_TYPE_COLLABORATOR_TRACKER } from "@/views/CollaboratorTrackerView";
+import { CollaboratorTrackerView } from "@/views/CollaboratorTrackerView";
 import { createRelationshipInput } from "@/components/ContactFields";
 
 export class AddContactModal extends Modal {
-	constructor(app: App, private plugin: FriendTracker) {
+	constructor(app: App, private plugin: CollaboratorTracker) {
 		super(app);
 	}
 
@@ -16,11 +16,11 @@ export class AddContactModal extends Modal {
                 contentEl.createEl("h2", { text: this.plugin.t("add_new_contact") });
 
 		const form = contentEl.createEl("form", {
-			cls: "friend-tracker-add-contact-form",
+			cls: "collaborator-tracker-add-contact-form",
 		});
 
 		// Name field (required)
-		const nameField = form.createDiv({ cls: "friend-tracker-modal-field" });
+		const nameField = form.createDiv({ cls: "collaborator-tracker-modal-field" });
                 nameField.createEl("label", { text: this.plugin.t("name_required") });
                 const nameInput = nameField.createEl("input", {
                         attr: {
@@ -29,13 +29,13 @@ export class AddContactModal extends Modal {
                                 required: true,
                                 placeholder: this.plugin.t("contact_name_placeholder"),
                         },
-			cls: "friend-tracker-modal-input",
+			cls: "collaborator-tracker-modal-input",
 		});
 		nameInput.focus();
 
 		// Birthday field
 		const birthdayField = form.createDiv({
-			cls: "friend-tracker-modal-field",
+			cls: "collaborator-tracker-modal-field",
 		});
                 birthdayField.createEl("label", { text: this.plugin.t("birthday") });
 		const birthdayInput = birthdayField.createEl("input", {
@@ -45,12 +45,12 @@ export class AddContactModal extends Modal {
                                 placeholder: this.plugin.t("birthday_placeholder"),
 				pattern: "\\d{4}-\\d{2}-\\d{2}",
 			},
-			cls: "friend-tracker-modal-input",
+			cls: "collaborator-tracker-modal-input",
 		});
 
 		// Email field
 		const emailField = form.createDiv({
-			cls: "friend-tracker-modal-field",
+			cls: "collaborator-tracker-modal-field",
 		});
                 emailField.createEl("label", { text: this.plugin.t("email") });
 		const emailInput = emailField.createEl("input", {
@@ -59,12 +59,12 @@ export class AddContactModal extends Modal {
 				name: "email",
                                 placeholder: this.plugin.t("email_placeholder"),
 			},
-			cls: "friend-tracker-modal-input",
+			cls: "collaborator-tracker-modal-input",
 		});
 
 		// Phone field
 		const phoneField = form.createDiv({
-			cls: "friend-tracker-modal-field",
+			cls: "collaborator-tracker-modal-field",
 		});
                 phoneField.createEl("label", { text: this.plugin.t("phone") });
 		const phoneInput = phoneField.createEl("input", {
@@ -73,12 +73,12 @@ export class AddContactModal extends Modal {
 				name: "phone",
                                 placeholder: this.plugin.t("phone_placeholder"),
 			},
-			cls: "friend-tracker-modal-input",
+			cls: "collaborator-tracker-modal-input",
 		});
 
 		// Relationship field
 		const relationshipField = form.createDiv({
-			cls: "friend-tracker-modal-field",
+			cls: "collaborator-tracker-modal-field",
 		});
                 relationshipField.createEl("label", { text: this.plugin.t("relationship") });
 		const relationshipInput = createRelationshipInput(
@@ -90,7 +90,7 @@ export class AddContactModal extends Modal {
                 form.createEl("button", {
                         text: this.plugin.t("create_contact"),
                         attr: { type: "submit" },
-                        cls: "friend-tracker-button button-primary",
+                        cls: "collaborator-tracker-button button-primary",
                 });
 
 		form.addEventListener("submit", (e) => {
@@ -151,14 +151,14 @@ export class AddContactModal extends Modal {
 			// Wait a moment for the file to be indexed
 			await new Promise((resolve) => setTimeout(resolve, 300));
 
-                        // Refresh the Colaborador Tracker view
-			const friendTrackerLeaves = this.app.workspace.getLeavesOfType(
-				VIEW_TYPE_FRIEND_TRACKER
+                       // Refresh the Collaborator Tracker view
+			const collaboratorTrackerLeaves = this.app.workspace.getLeavesOfType(
+				VIEW_TYPE_COLLABORATOR_TRACKER
 			);
 
-			for (const leaf of friendTrackerLeaves) {
+			for (const leaf of collaboratorTrackerLeaves) {
 				const view = leaf.view;
-				if (view instanceof FriendTrackerView) {
+				if (view instanceof CollaboratorTrackerView) {
 					await view.refresh();
 					break;
 				}

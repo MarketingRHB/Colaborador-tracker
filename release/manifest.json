@@ -1,9 +1,9 @@
 {
-	"id": "friend-tracker",
-        "name": "Colaborador Tracker",
+       "id": "collaborator-tracker",
+       "name": "Collaborator Tracker",
        "version": "1.3.4",
 	"minAppVersion": "1.4.14",
-	"description": "Keep track of friends, birthdays, reminders, and interactions in Obsidian. Build a personal CRM, log connections, and stay organized inside your vault.",
+       "description": "Keep track of collaborators, birthdays, reminders, and interactions in Obsidian. Build a personal CRM, log connections, and stay organized inside your vault.",
 	"author": "Dan Au",
 	"authorUrl": "https://dausign.com",
 	"isDesktopOnly": false
