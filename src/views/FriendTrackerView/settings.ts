@@ -237,23 +237,41 @@ export class FriendTrackerSettingTab extends PluginSettingTab {
 				});
 		});
 
-		new Setting(containerEl)
-			.setName("Default tab")
-			.setDesc("Choose which tab opens by default")
-			.addDropdown((dropdown) => {
-				dropdown
-					.addOption("notes", "Notes")
-					.addOption("interactions", "Interactions")
-					.addOption("markdown", "Markdown")
-					.setValue(this.plugin.settings.defaultActiveTab)
-					.onChange(
-						async (
-							value: "notes" | "interactions" | "markdown"
-						) => {
-							this.plugin.settings.defaultActiveTab = value;
-							await this.plugin.saveSettings();
-						}
-					);
-			});
+                new Setting(containerEl)
+                        .setName("Default tab")
+                        .setDesc("Choose which tab opens by default")
+                        .addDropdown((dropdown) => {
+                                dropdown
+                                        .addOption("notes", "Notes")
+                                        .addOption("interactions", "Interactions")
+                                        .addOption("markdown", "Markdown")
+                                        .setValue(this.plugin.settings.defaultActiveTab)
+                                        .onChange(
+                                                async (
+                                                        value: "notes" | "interactions" | "markdown"
+                                                ) => {
+                                                        this.plugin.settings.defaultActiveTab = value;
+                                                        await this.plugin.saveSettings();
+                                                }
+                                        );
+                        });
+
+                new Setting(containerEl)
+                        .setName("Language")
+                        .setDesc("Select plugin language")
+                        .addDropdown((dropdown) => {
+                                dropdown
+                                        .addOption("en", "English")
+                                        .addOption("pt", "Português")
+                                        .addOption("zh", "中文")
+                                        .addOption("ja", "日本語")
+                                        .setValue(this.plugin.settings.language)
+                                        .onChange(async (value) => {
+                                                this.plugin.settings.language = value;
+                                                await this.plugin.saveSettings();
+                                                await this.plugin.loadTranslations();
+                                                this.display();
+                                        });
+                        });
 	}
 }

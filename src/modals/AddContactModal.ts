@@ -13,7 +13,7 @@ export class AddContactModal extends Modal {
 	onOpen() {
 		const { contentEl } = this;
 		contentEl.empty();
-		contentEl.createEl("h2", { text: "Add new contact" });
+                contentEl.createEl("h2", { text: this.plugin.t("add_new_contact") });
 
 		const form = contentEl.createEl("form", {
 			cls: "friend-tracker-add-contact-form",
@@ -21,14 +21,14 @@ export class AddContactModal extends Modal {
 
 		// Name field (required)
 		const nameField = form.createDiv({ cls: "friend-tracker-modal-field" });
-		nameField.createEl("label", { text: "Name *" });
-		const nameInput = nameField.createEl("input", {
-			attr: {
-				type: "text",
-				name: "name",
-				required: true,
-				placeholder: "Contact name",
-			},
+                nameField.createEl("label", { text: this.plugin.t("name_required") });
+                const nameInput = nameField.createEl("input", {
+                        attr: {
+                                type: "text",
+                                name: "name",
+                                required: true,
+                                placeholder: this.plugin.t("contact_name_placeholder"),
+                        },
 			cls: "friend-tracker-modal-input",
 		});
 		nameInput.focus();
@@ -37,12 +37,12 @@ export class AddContactModal extends Modal {
 		const birthdayField = form.createDiv({
 			cls: "friend-tracker-modal-field",
 		});
-		birthdayField.createEl("label", { text: "Birthday" });
+                birthdayField.createEl("label", { text: this.plugin.t("birthday") });
 		const birthdayInput = birthdayField.createEl("input", {
 			attr: {
 				type: "date",
 				name: "birthday",
-				placeholder: "YYYY-MM-DD",
+                                placeholder: this.plugin.t("birthday_placeholder"),
 				pattern: "\\d{4}-\\d{2}-\\d{2}",
 			},
 			cls: "friend-tracker-modal-input",
@@ -52,12 +52,12 @@ export class AddContactModal extends Modal {
 		const emailField = form.createDiv({
 			cls: "friend-tracker-modal-field",
 		});
-		emailField.createEl("label", { text: "Email" });
+                emailField.createEl("label", { text: this.plugin.t("email") });
 		const emailInput = emailField.createEl("input", {
 			attr: {
 				type: "email",
 				name: "email",
-				placeholder: "email@example.com",
+                                placeholder: this.plugin.t("email_placeholder"),
 			},
 			cls: "friend-tracker-modal-input",
 		});
@@ -66,12 +66,12 @@ export class AddContactModal extends Modal {
 		const phoneField = form.createDiv({
 			cls: "friend-tracker-modal-field",
 		});
-		phoneField.createEl("label", { text: "Phone" });
+                phoneField.createEl("label", { text: this.plugin.t("phone") });
 		const phoneInput = phoneField.createEl("input", {
 			attr: {
 				type: "tel",
 				name: "phone",
-				placeholder: "000-000-0000",
+                                placeholder: this.plugin.t("phone_placeholder"),
 			},
 			cls: "friend-tracker-modal-input",
 		});
@@ -80,18 +80,18 @@ export class AddContactModal extends Modal {
 		const relationshipField = form.createDiv({
 			cls: "friend-tracker-modal-field",
 		});
-		relationshipField.createEl("label", { text: "Relationship" });
+                relationshipField.createEl("label", { text: this.plugin.t("relationship") });
 		const relationshipInput = createRelationshipInput(
 			relationshipField,
 			this.plugin
 		);
 
 		// Submit button
-		form.createEl("button", {
-			text: "Create contact",
-			attr: { type: "submit" },
-			cls: "friend-tracker-button button-primary",
-		});
+                form.createEl("button", {
+                        text: this.plugin.t("create_contact"),
+                        attr: { type: "submit" },
+                        cls: "friend-tracker-button button-primary",
+                });
 
 		form.addEventListener("submit", (e) => {
 			e.preventDefault();
@@ -164,10 +164,10 @@ export class AddContactModal extends Modal {
 				}
 			}
 
-			new Notice(`Created contact: ${data.name}`);
-		} catch (error) {
-			new Notice(`Error creating contact: ${error}`);
-		}
+                        new Notice(this.plugin.t("created_contact") + ": " + data.name);
+                } catch (error) {
+                        new Notice(this.plugin.t("error_creating_contact") + ": " + error);
+                }
 	}
 
 	onClose() {

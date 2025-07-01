@@ -20,7 +20,7 @@ export class FriendTrackerView extends ItemView {
         public searchFocused = false;
         public searchInput: HTMLInputElement | null = null;
 
-	constructor(leaf: WorkspaceLeaf, private plugin: FriendTracker) {
+        constructor(leaf: WorkspaceLeaf, public plugin: FriendTracker) {
 		super(leaf);
 		this.currentSort = {
 			column: this.plugin.settings.defaultSortColumn,
