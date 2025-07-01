@@ -11,10 +11,32 @@ export class TableView {
 		sort: SortConfig
 	) {
 		// Create header and add contact button container
-		const headerContainer = container.createEl("div", {
-			cls: "friend-tracker-header",
-		});
-		headerContainer.createEl("h2", { text: "Friend tracker" });
+                const headerContainer = container.createEl("div", {
+                        cls: "friend-tracker-header",
+                });
+                headerContainer.createEl("h2", { text: "Friend tracker" });
+
+                const searchInput = headerContainer.createEl("input", {
+                        type: "text",
+                        cls: "friend-tracker-search-input",
+                        placeholder: "Search...",
+                }) as HTMLInputElement;
+                searchInput.value = this.view.searchQuery;
+                searchInput.addEventListener("input", () =>
+                        this.view.updateSearchQuery(searchInput.value)
+                );
+                searchInput.addEventListener("focus", () => {
+                        this.view.searchFocused = true;
+                });
+                searchInput.addEventListener("blur", () => {
+                        this.view.searchFocused = false;
+                });
+                this.view.searchInput = searchInput;
+                if (this.view.searchFocused) {
+                        const val = searchInput.value;
+                        searchInput.focus({ preventScroll: true });
+                        searchInput.setSelectionRange(val.length, val.length);
+                }
 
 		const addButton = headerContainer.createEl("button", {
 			text: "Add contact",

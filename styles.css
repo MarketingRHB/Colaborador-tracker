@@ -1128,8 +1128,21 @@ If your plugin does not need CSS, delete this file.
 
 /* Style for helper text */
 .section-helper-text {
-	margin: 12px 0 8px;
-	color: var(--text-muted);
-	font-size: 0.9em;
-	line-height: 1.4;
+        margin: 12px 0 8px;
+        color: var(--text-muted);
+        font-size: 0.9em;
+        line-height: 1.4;
+}
+
+.friend-tracker-search-input {
+        flex-grow: 1;
+        padding: 4px 8px;
+        background: var(--background-modifier-form-field);
+        border: 1px solid var(--background-modifier-border);
+        border-radius: 4px;
+}
+
+.friend-tracker-search-input:focus {
+        outline: none;
+        border-color: var(--interactive-accent);
 }
