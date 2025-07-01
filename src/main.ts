@@ -1,4 +1,5 @@
 import { Plugin, Notice } from "obsidian";
+import * as path from "path";
 import { CollaboratorTrackerSettings, DEFAULT_SETTINGS } from "./types";
 import { loadIni, getPluginDir } from "./i18n";
 import {
@@ -16,6 +17,7 @@ export default class CollaboratorTracker extends Plugin {
         settings: CollaboratorTrackerSettings;
         public contactOperations: ContactOperations;
         private translations: Record<string, string> = {};
+        private viewsRegistered = false;
 
         public t(key: string): string {
                 return this.translations[key] || key;
@@ -32,9 +34,13 @@ export default class CollaboratorTracker extends Plugin {
 		});
 	}
 
-	private async initialize() {
-		try {
-			// Register views
+       private async initialize() {
+               if (this.viewsRegistered) {
+                       return;
+               }
+               this.viewsRegistered = true;
+               try {
+                       // Register views
 			this.registerView(
 				VIEW_TYPE_COLLABORATOR_TRACKER,
 				(leaf) => new CollaboratorTrackerView(leaf, this)
@@ -124,13 +130,26 @@ export default class CollaboratorTracker extends Plugin {
         }
 
         public async loadTranslations() {
+                const dir = getPluginDir(this.app, this.manifest);
+                const userFile = `${dir}/locales/${this.settings.language}.ini`;
+                const bundledFile = path.join(
+                        __dirname,
+                        "locales",
+                        `${this.settings.language}.ini`
+                );
+
                 try {
-                        const dir = getPluginDir(this.app, this.manifest);
-                        const file = `${dir}/locales/${this.settings.language}.ini`;
-                        this.translations = await loadIni(file);
+                        this.translations = await loadIni(userFile);
+                        if (Object.keys(this.translations).length === 0) {
+                                this.translations = await loadIni(bundledFile);
+                        }
                 } catch (e) {
-                        console.error('Failed to load translations', e);
-                        this.translations = {};
+                        console.error("Failed to load translations", e);
+                        try {
+                                this.translations = await loadIni(bundledFile);
+                        } catch {
+                                this.translations = {};
+                        }
                 }
         }
 
