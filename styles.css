@@ -626,7 +626,10 @@ If your plugin does not need CSS, delete this file.
 	color: var(--text-normal);
 }
 .friend-tracker-modal-input.relationship-type-input {
-	width: 200px;
+        width: 200px;
+}
+.friend-tracker-modal-input.holiday-date-input {
+        width: 200px;
 }
 .friend-tracker-modal-input:focus {
 	border-color: var(--interactive-accent);
@@ -775,8 +778,58 @@ If your plugin does not need CSS, delete this file.
 }
 
 .friend-tracker-relationship-types .setting-item-control input {
-	text-align: left;
-	text-transform: capitalize;
+        text-align: left;
+        text-transform: capitalize;
+}
+
+/* Style for holiday date settings */
+.friend-tracker-holiday-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+}
+
+.friend-tracker-holiday-header h3 {
+        margin: 0;
+}
+
+/* Remove default Setting styles in holiday header */
+.friend-tracker-holiday-header .setting-item {
+        border: none;
+        padding: 0;
+}
+
+.friend-tracker-holiday-header .setting-item-control {
+        padding: 0;
+}
+
+.friend-tracker-holiday-dates {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+}
+
+.friend-tracker-holiday-dates .setting-item {
+        border: none;
+        padding: 8px;
+        margin: 0;
+        background: var(--background-modifier-form-field);
+        border-radius: 4px;
+}
+
+.friend-tracker-holiday-dates .setting-item-info {
+        display: none;
+}
+
+.friend-tracker-holiday-dates .setting-item-control {
+        flex: 1;
+        justify-content: space-between;
+        padding: 0;
+}
+
+.friend-tracker-holiday-dates .setting-item-control input {
+        text-align: left;
 }
 
 /* Capitalize relationship values in table */
