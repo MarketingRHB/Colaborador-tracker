@@ -1,4 +1,4 @@
-# Friend Tracker for Obsidian
+# Colaborador Tracker for Obsidian
 
 A plugin for Obsidian that helps you keep track of friends, family, and your interactions with them. Never forget a birthday or important detail about someone you care about.
 
@@ -11,7 +11,7 @@ This plugin was inspired by [Scott Stockdale's article on maintaining meaningful
 -   Remembering personal details
 -   Making regular meaningful touchpoints
 
-Friend Tracker helps implement these relationship-building practices in a simple, organized way within Obsidian.
+Colaborador Tracker helps implement these relationship-building practices in a simple, organized way within Obsidian.
 
 ![image](https://github.com/user-attachments/assets/0f8ef3de-6c18-4813-a87a-1a7d5d1a680f)
 
@@ -62,7 +62,7 @@ Friend Tracker helps implement these relationship-building practices in a simple
 
 1. Open Obsidian Settings
 2. Go to Community Plugins and disable Safe Mode
-3. Click Browse and search for "Friend Tracker"
+3. Click Browse and search for "Colaborador Tracker"
 4. Install the plugin and enable it
 
 ## Storage

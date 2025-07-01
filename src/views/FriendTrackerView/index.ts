@@ -85,9 +85,9 @@ export class FriendTrackerView extends ItemView {
 		return VIEW_TYPE_FRIEND_TRACKER;
 	}
 
-	getDisplayText(): string {
-		return "Friend tracker";
-	}
+        getDisplayText(): string {
+                return "Colaborador Tracker";
+        }
 
 	async onOpen() {
 		this.registerEvent(

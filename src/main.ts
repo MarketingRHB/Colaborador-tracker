@@ -45,8 +45,8 @@ export default class FriendTracker extends Plugin {
 				(leaf) => new ContactPageView(leaf, this)
 			);
 
-			// Add ribbon icon
-			this.addRibbonIcon("user", "Open friend tracker", async () => {
+                        // Add ribbon icon
+                        this.addRibbonIcon("user", "Open Colaborador Tracker", async () => {
 				const workspace = this.app.workspace;
 				const leaves = workspace.getLeavesOfType(
 					VIEW_TYPE_FRIEND_TRACKER
@@ -68,8 +68,8 @@ export default class FriendTracker extends Plugin {
 						active: true,
 					});
 					workspace.revealLeaf(leaf);
-				} else {
-					new Notice("Could not create Friend Tracker view");
+                                } else {
+                                        new Notice("Could not create Colaborador Tracker view");
 				}
 			});
 
@@ -79,8 +79,8 @@ export default class FriendTracker extends Plugin {
 			// Check for birthdays after everything is initialized
 			await this.checkBirthdays();
 		} catch (error) {
-			console.error("Friend Tracker failed to load:", error);
-			new Notice("Friend Tracker failed to load: " + error.message);
+                        console.error("Colaborador Tracker failed to load:", error);
+                        new Notice("Colaborador Tracker failed to load: " + error.message);
 		}
 	}
 

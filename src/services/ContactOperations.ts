@@ -11,7 +11,7 @@ export class ContactOperations {
 		const folderPath = vault.getFolderByPath(folder);
 
 		if (!folderPath) {
-			new Notice("Friend Tracker folder not found.");
+                        new Notice("Colaborador Tracker folder not found.");
 			return [];
 		}
 
