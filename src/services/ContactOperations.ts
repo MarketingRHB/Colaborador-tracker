@@ -2,12 +2,6 @@ import { Notice, TFile, parseYaml } from "obsidian";
 import type FriendTracker from "@/main";
 import type { ContactWithCountdown } from "@/types";
 
-const HOLIDAYS = new Set([
-        "01-01", // New Year's Day
-        "07-04", // Independence Day
-        "12-25", // Christmas Day
-]);
-
 export class ContactOperations {
 	constructor(private plugin: FriendTracker) {}
 
@@ -223,8 +217,9 @@ export class ContactOperations {
                                 d.getDate()
                         ).padStart(2, "0")}`;
 
+                const holidaySet = new Set(this.plugin.settings.holidayDates);
                 if (
-                        HOLIDAYS.has(monthDay(yesterday)) &&
+                        holidaySet.has(monthDay(yesterday)) &&
                         monthDay(yesterday) ===
                                 `${String(birthDate.getMonth() + 1).padStart(2, "0")}-${String(
                                         birthDate.getDate()

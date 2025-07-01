@@ -24,6 +24,9 @@ Friend Tracker helps implement these relationship-building practices in a simple
 -   **Notes Section**: Keep detailed notes about family members, relationships, or any other important details
 -   **Smart Organization**: Sort contacts by name, age, or upcoming birthdays
 -   **Search Contacts**: Quickly filter contacts with the new search bar
+-   **Holiday & Weekend Reminders**: Weekend birthdays show on Monday, and
+    birthdays falling on your configured holidays remain visible until the day
+    after. Edit the holiday list in the plugin settings.
 
 ## Usage
 
@@ -46,6 +49,8 @@ Friend Tracker helps implement these relationship-building practices in a simple
 -   The main view shows upcoming birthdays
 -   Sort by "Days Until Birthday" to see who's celebrating soon
 -   Birthdays are automatically calculated and displayed in a friendly format
+-   Weekend birthdays appear on Monday, and birthdays on your holiday list stay
+    visible until the day after the holiday
 
 ### Custom Fields
 

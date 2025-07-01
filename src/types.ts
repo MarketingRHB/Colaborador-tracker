@@ -1,11 +1,12 @@
 import { TFile } from "obsidian";
 
 export interface FriendTrackerSettings {
-	contactsFolder: string;
-	defaultSortColumn: keyof Omit<ContactWithCountdown, "file">;
-	defaultSortDirection: "asc" | "desc";
-	relationshipTypes: string[];
-	defaultActiveTab: "notes" | "interactions" | "markdown";
+        contactsFolder: string;
+        defaultSortColumn: keyof Omit<ContactWithCountdown, "file">;
+        defaultSortDirection: "asc" | "desc";
+        relationshipTypes: string[];
+        holidayDates: string[];
+        defaultActiveTab: "notes" | "interactions" | "markdown";
 }
 
 export interface Contact {
@@ -33,9 +34,10 @@ export interface Interaction {
 }
 
 export const DEFAULT_SETTINGS: FriendTrackerSettings = {
-	contactsFolder: "FriendTracker",
-	defaultSortColumn: "daysUntilBirthday",
-	defaultSortDirection: "asc",
-	relationshipTypes: ["family", "friend", "colleague", "pet"],
-	defaultActiveTab: "notes",
+        contactsFolder: "FriendTracker",
+        defaultSortColumn: "daysUntilBirthday",
+        defaultSortDirection: "asc",
+        relationshipTypes: ["family", "friend", "colleague", "pet"],
+        holidayDates: ["01-01", "07-04", "12-25"],
+        defaultActiveTab: "notes",
 };
