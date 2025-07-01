@@ -23,6 +23,7 @@ Friend Tracker helps implement these relationship-building practices in a simple
 -   **Custom Fields**: Add custom fields to track any information that matters to you
 -   **Notes Section**: Keep detailed notes about family members, relationships, or any other important details
 -   **Smart Organization**: Sort contacts by name, age, or upcoming birthdays
+-   **Search Contacts**: Quickly filter contacts with the new search bar
 
 ## Usage
 

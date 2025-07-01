@@ -2,6 +2,12 @@ import { Notice, TFile, parseYaml } from "obsidian";
 import type FriendTracker from "@/main";
 import type { ContactWithCountdown } from "@/types";
 
+const HOLIDAYS = new Set([
+        "01-01", // New Year's Day
+        "07-04", // Independence Day
+        "12-25", // Christmas Day
+]);
+
 export class ContactOperations {
 	constructor(private plugin: FriendTracker) {}
 
@@ -164,8 +170,8 @@ export class ContactOperations {
 		});
 	}
 
-	public calculateDaysUntilBirthday(birthday: string): number | null {
-		if (!birthday) return null;
+        public calculateDaysUntilBirthday(birthday: string): number | null {
+                if (!birthday) return null;
 
 		// Parse the birthday and set it to local midnight
 		const [birthYear, birthMonth, birthDay] = birthday
@@ -180,23 +186,57 @@ export class ContactOperations {
 		const today = new Date();
 		today.setHours(0, 0, 0, 0);
 
-		// Create this year's birthday at local midnight
-		const thisYearBirthday = new Date(
-			today.getFullYear(),
-			birthDate.getMonth(),
-			birthDate.getDate()
-		);
-		thisYearBirthday.setHours(0, 0, 0, 0);
+                // Create this year's birthday at local midnight
+                const thisYearBirthday = new Date(
+                        today.getFullYear(),
+                        birthDate.getMonth(),
+                        birthDate.getDate()
+                );
+                thisYearBirthday.setHours(0, 0, 0, 0);
 
 		// If this year's birthday has already passed, use next year's birthday
 		if (thisYearBirthday < today) {
 			thisYearBirthday.setFullYear(today.getFullYear() + 1);
 		}
 
-		// Calculate days difference
-		const diffTime = thisYearBirthday.getTime() - today.getTime();
-		return Math.round(diffTime / (1000 * 60 * 60 * 24));
-	}
+                // Show weekend birthdays on Monday
+                if (today.getDay() === 1) {
+                        const saturday = new Date(today);
+                        saturday.setDate(today.getDate() - 2);
+                        const sunday = new Date(today);
+                        sunday.setDate(today.getDate() - 1);
+                        if (
+                                (saturday.getMonth() === birthDate.getMonth() &&
+                                        saturday.getDate() === birthDate.getDate()) ||
+                                (sunday.getMonth() === birthDate.getMonth() &&
+                                        sunday.getDate() === birthDate.getDate())
+                        ) {
+                                return 0;
+                        }
+                }
+
+                // Continue showing birthdays the day after a holiday
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+                const monthDay = (d: Date) =>
+                        `${String(d.getMonth() + 1).padStart(2, "0")}-${String(
+                                d.getDate()
+                        ).padStart(2, "0")}`;
+
+                if (
+                        HOLIDAYS.has(monthDay(yesterday)) &&
+                        monthDay(yesterday) ===
+                                `${String(birthDate.getMonth() + 1).padStart(2, "0")}-${String(
+                                        birthDate.getDate()
+                                ).padStart(2, "0")}`
+                ) {
+                        return 0;
+                }
+
+                // Calculate days difference
+                const diffTime = thisYearBirthday.getTime() - today.getTime();
+                return Math.round(diffTime / (1000 * 60 * 60 * 24));
+        }
 
 	private formatDaysAgo(dateStr: string): string {
 		const date = new Date(dateStr);

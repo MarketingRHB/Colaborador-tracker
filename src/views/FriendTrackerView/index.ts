@@ -10,12 +10,15 @@ import { DeleteContactModal } from "@/modals/DeleteContactModal";
 export const VIEW_TYPE_FRIEND_TRACKER = "friend-tracker-view";
 
 export class FriendTrackerView extends ItemView {
-	currentSort: SortConfig;
-	private tableView: TableView;
-	private contactOps: ContactOperations;
-	private fileChangeHandler: EventRef | null = null;
-	private isRefreshing = false;
-	private _contacts: ContactWithCountdown[] | null = null;
+        currentSort: SortConfig;
+        private tableView: TableView;
+        private contactOps: ContactOperations;
+        private fileChangeHandler: EventRef | null = null;
+        private isRefreshing = false;
+        private _contacts: ContactWithCountdown[] | null = null;
+        public searchQuery = "";
+        public searchFocused = false;
+        public searchInput: HTMLInputElement | null = null;
 
 	constructor(leaf: WorkspaceLeaf, private plugin: FriendTracker) {
 		super(leaf);
@@ -65,13 +68,18 @@ export class FriendTrackerView extends ItemView {
 		}
 	}
 
-	public async openDeleteModal(file: TFile) {
-		const modal = new DeleteContactModal(this.app, file, async () => {
-			await this.app.fileManager.trashFile(file);
-			await this.refresh();
-		});
-		modal.open();
-	}
+        public async openDeleteModal(file: TFile) {
+                const modal = new DeleteContactModal(this.app, file, async () => {
+                        await this.app.fileManager.trashFile(file);
+                        await this.refresh();
+                });
+                modal.open();
+        }
+
+        public updateSearchQuery(value: string) {
+                this.searchQuery = value;
+                this.refresh();
+        }
 
 	getViewType(): string {
 		return VIEW_TYPE_FRIEND_TRACKER;
@@ -134,19 +142,20 @@ export class FriendTrackerView extends ItemView {
 			}
 
 			// Get contacts and apply sort if needed
-			const contacts = await this.contactOps.getContacts();
-			const sortConfig: SortConfig =
-				this.currentSort.column && this.currentSort.direction
-					? this.currentSort
-					: {
-							column: "name" as keyof Omit<
-								ContactWithCountdown,
-								"file"
-							>,
-							direction: "asc" as "asc" | "desc",
-					  };
+                        const contacts = await this.contactOps.getContacts();
+                        const filtered = this.filterContacts(contacts);
+                        const sortConfig: SortConfig =
+                                this.currentSort.column && this.currentSort.direction
+                                        ? this.currentSort
+                                        : {
+                                                        column: "name" as keyof Omit<
+                                                                ContactWithCountdown,
+                                                                "file"
+                                                        >,
+                                                        direction: "asc" as "asc" | "desc",
+                                          };
 
-			const sortedContacts = contacts.sort((a, b) => {
+                        const sortedContacts = filtered.sort((a, b) => {
 				const valueA = a[sortConfig.column];
 				const valueB = b[sortConfig.column];
 
@@ -165,27 +174,42 @@ export class FriendTrackerView extends ItemView {
 			});
 
 			// Create a fresh container for the table
-			const tableContainer = container.createDiv();
-			await this.tableView.render(
-				tableContainer,
-				sortedContacts,
-				sortConfig
-			);
-		} finally {
-			this.isRefreshing = false;
-		}
-	}
+                        const tableContainer = container.createDiv();
+                        await this.tableView.render(
+                                tableContainer,
+                                sortedContacts,
+                                sortConfig
+                        );
+                        if (this.searchFocused && this.searchInput) {
+                                const val = this.searchInput.value;
+                                this.searchInput.focus({ preventScroll: true });
+                                this.searchInput.setSelectionRange(val.length, val.length);
+                        }
+                } finally {
+                        this.isRefreshing = false;
+                }
+        }
 
 	private isContactFile(file: TFile): boolean {
 		const contactFolder = this.plugin.settings.contactsFolder;
 		return file.path.startsWith(contactFolder + "/");
 	}
 
-	private async sortContacts(
-		column: keyof Omit<ContactWithCountdown, "file">,
-		direction: "asc" | "desc"
-	) {
-		this.currentSort = { column, direction };
-		await this.refresh();
-	}
+        private async sortContacts(
+                column: keyof Omit<ContactWithCountdown, "file">,
+                direction: "asc" | "desc"
+        ) {
+                this.currentSort = { column, direction };
+                await this.refresh();
+        }
+
+        private filterContacts(
+                contacts: ContactWithCountdown[]
+        ): ContactWithCountdown[] {
+                if (!this.searchQuery) return contacts;
+                const q = this.searchQuery.toLowerCase();
+                return contacts.filter((c) =>
+                        c.name.toLowerCase().includes(q)
+                );
+        }
 }
