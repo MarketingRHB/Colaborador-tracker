@@ -78,6 +78,11 @@ All contact information is stored in markdown files with YAML frontmatter, makin
 
 If you encounter any issues or have feature requests, please visit the [GitHub repository](https://github.com/buzzguy/collaborator-tracker/issues).
 
+## Building from source
+
+1. Run `npm install` to install dependencies.
+2. Run `npm run build` to compile the plugin.
+
 ## Author
 
 Created by [Dan Au](https://dausign.com)
