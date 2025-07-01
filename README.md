@@ -83,6 +83,7 @@ If you encounter any issues or have feature requests, please visit the [GitHub r
 1. Run `npm install` to install dependencies.
 2. Run `npm run build` to compile the plugin.
 
+
 ## Author
 
 Created by [Dan Au](https://dausign.com)
