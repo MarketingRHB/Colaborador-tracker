@@ -1,9 +1,9 @@
 import { Notice, TFile, parseYaml } from "obsidian";
-import type FriendTracker from "@/main";
+import type CollaboratorTracker from "@/main";
 import type { ContactWithCountdown } from "@/types";
 
 export class ContactOperations {
-	constructor(private plugin: FriendTracker) {}
+	constructor(private plugin: CollaboratorTracker) {}
 
 	async getContacts(): Promise<ContactWithCountdown[]> {
 		const folder = this.plugin.settings.contactsFolder;
@@ -11,7 +11,7 @@ export class ContactOperations {
 		const folderPath = vault.getFolderByPath(folder);
 
 		if (!folderPath) {
-                        new Notice("Colaborador Tracker folder not found.");
+                       new Notice("Collaborator Tracker folder not found.");
 			return [];
 		}
 
