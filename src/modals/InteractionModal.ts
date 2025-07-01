@@ -19,9 +19,12 @@ export class InteractionModal extends Modal {
 		const { contentEl } = this;
 		contentEl.empty();
 
-		contentEl.createEl("h2", {
-			text: this.interaction ? "Edit interaction" : "Add interaction",
-		});
+                const plugin = (this.app as any).plugins.getPlugin("friend-tracker");
+                contentEl.createEl("h2", {
+                        text: this.interaction
+                                ? plugin?.t("edit_interaction") || "Edit interaction"
+                                : plugin?.t("add_interaction") || "Add interaction",
+                });
 
 		const form = contentEl.createEl("form");
 		form.addEventListener("submit", (e) => {
@@ -52,21 +55,24 @@ export class InteractionModal extends Modal {
 		});
 
 		// Text input
-		const textInput = form.createEl("textarea", {
-			attr: {
-				placeholder: "What happened?",
-				required: "true",
-			},
+                const textInput = form.createEl("textarea", {
+                        attr: {
+                                placeholder: plugin?.t("what_happened") || "What happened?",
+                                required: "true",
+                        },
 			cls: "contact-interaction-text-input",
 		});
 		textInput.value = this.interaction?.text || "";
 
 		// Submit button
-		form.createEl("button", {
-			text: this.interaction ? "Save changes" : "Add interaction",
-			attr: { type: "submit" },
-			cls: "friend-tracker-button button-primary",
-		});
+                form.createEl("button", {
+                        text:
+                                this.interaction
+                                        ? plugin?.t("save_changes") || "Save changes"
+                                        : plugin?.t("add_interaction") || "Add interaction",
+                        attr: { type: "submit" },
+                        cls: "friend-tracker-button button-primary",
+                });
 	}
 
 	onClose() {

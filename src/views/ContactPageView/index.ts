@@ -100,13 +100,13 @@ export class ContactPageView extends ItemView {
 		const container = this.containerEl.children[1] as HTMLElement;
 		container.empty();
 
-		if (!this.contactData || !this.contactData.name) {
-			container.createEl("div", {
-				text: "No contact data available",
-				cls: "contact-empty-state",
-			});
-			return;
-		}
+                if (!this.contactData || !this.contactData.name) {
+                        container.createEl("div", {
+                                text: this.plugin.t("no_contact_data"),
+                                cls: "contact-empty-state",
+                        });
+                        return;
+                }
 
 		// Header with name
 		const header = container.createEl("div", {
@@ -128,19 +128,19 @@ export class ContactPageView extends ItemView {
 			cls: "contact-tabs",
 		});
 
-		const tabs = [
-			{ id: "notes" as const, icon: "pencil", label: "Notes" },
-			{
-				id: "interactions" as const,
-				icon: "clock",
-				label: "Interactions",
-			},
-			{
-				id: "markdown" as const,
-				icon: "document",
-				label: "Markdown",
-			},
-		];
+                const tabs = [
+                        { id: "notes" as const, icon: "pencil", label: this.plugin.t("notes") },
+                        {
+                                id: "interactions" as const,
+                                icon: "clock",
+                                label: this.plugin.t("interactions"),
+                        },
+                        {
+                                id: "markdown" as const,
+                                icon: "document",
+                                label: this.plugin.t("markdown"),
+                        },
+                ];
 
 		tabs.forEach((tab) => {
 			const tabButton = tabsContainer.createEl("button", {
@@ -190,14 +190,14 @@ export class ContactPageView extends ItemView {
 			cls: "contact-name-row",
 		});
 
-		const nameText = editContainer.createEl("h1", {
-			text: this.contactData.name || "Unnamed Contact",
-		});
+                const nameText = editContainer.createEl("h1", {
+                        text: this.contactData.name || this.plugin.t("unnamed_contact"),
+                });
 
 		const nameInput = editContainer.createEl("input", {
 			type: "text",
 			value: this.contactData.name || "",
-			placeholder: "Contact name",
+                        placeholder: this.plugin.t("contact_name_placeholder"),
 			cls: "contact-name-input",
 		});
 
@@ -318,7 +318,7 @@ export class ContactPageView extends ItemView {
 							this._file,
 							newPath
 						);
-						new Notice(`Updated contact name`);
+                                                new Notice(this.plugin.t("updated_contact_name"));
 
 						// Refresh Friend Tracker view
 						const friendTrackerLeaves =
@@ -332,12 +332,12 @@ export class ContactPageView extends ItemView {
 								break;
 							}
 						}
-					} catch (error) {
-						new Notice(`Error updating file name: ${error}`);
-					}
+                                        } catch (error) {
+                                                new Notice(this.plugin.t("error_updating_filename") + ": " + error);
+                                        }
 				}
 			}
-			nameText.textContent = nameInput.value || "Unnamed Contact";
+                        nameText.textContent = nameInput.value || this.plugin.t("unnamed_contact");
 			nameText.classList.remove("editing");
 			nameInput.classList.remove("editing");
 			setIcon(editButton, "pencil");
@@ -522,10 +522,10 @@ export class ContactPageView extends ItemView {
 				});
 
 			// Add edit button at the bottom
-			const editButton = fieldsContainer.createEl("button", {
-				cls: "friend-tracker-button",
-				text: "Edit",
-			});
+                        const editButton = fieldsContainer.createEl("button", {
+                                cls: "friend-tracker-button",
+                                text: this.plugin.t("edit"),
+                        });
 
 			editButton.addEventListener("click", () => {
 				renderEditMode();
@@ -561,19 +561,19 @@ export class ContactPageView extends ItemView {
 				});
 
 			// Add custom field button
-			const addFieldButton = fieldsContainer.createEl("button", {
-				cls: "friend-tracker-button button-outlined",
-				text: "Add custom field",
-			});
+                        const addFieldButton = fieldsContainer.createEl("button", {
+                                cls: "friend-tracker-button button-outlined",
+                                text: this.plugin.t("add_custom_field"),
+                        });
 			addFieldButton.addEventListener("click", () => {
 				this.openAddFieldModal();
 			});
 
 			// Add done button
-			const doneButton = fieldsContainer.createEl("button", {
-				cls: "friend-tracker-button button-primary button-full-width",
-				text: "Done",
-			});
+                        const doneButton = fieldsContainer.createEl("button", {
+                                cls: "friend-tracker-button button-primary button-full-width",
+                                text: this.plugin.t("done"),
+                        });
 
 			doneButton.addEventListener("click", async () => {
 				await this.saveContactData();
@@ -620,13 +620,12 @@ export class ContactPageView extends ItemView {
 			cls: "contact-notes-section",
 		});
 
-		const notesInput = notesSection.createEl("textarea", {
-			cls: "contact-notes-input",
-			attr: {
-				placeholder:
-					"Add notes about family members, parents' names, or anything else you want to remember...",
-			},
-		});
+                const notesInput = notesSection.createEl("textarea", {
+                        cls: "contact-notes-input",
+                        attr: {
+                                placeholder: this.plugin.t("notes_placeholder"),
+                        },
+                });
 		notesInput.value = this.contactData.notes || "";
 
 		notesInput.addEventListener("input", () => {
@@ -658,16 +657,16 @@ export class ContactPageView extends ItemView {
 			!Array.isArray(this.contactData.interactions) ||
 			this.contactData.interactions.length === 0
 		) {
-			headerContainer.createEl("div", {
-				cls: "section-helper-text",
-				text: "Log meaningful touchpoints like meetings, calls, or important conversations to help maintain strong relationships",
-			});
+                        headerContainer.createEl("div", {
+                                cls: "section-helper-text",
+                                text: this.plugin.t("log_touchpoints_help"),
+                        });
 		}
 
-		const addButton = headerContainer.createEl("button", {
-			cls: "friend-tracker-button button-align-right",
-			text: "Add interaction",
-		});
+                const addButton = headerContainer.createEl("button", {
+                        cls: "friend-tracker-button button-align-right",
+                        text: this.plugin.t("add_interaction"),
+                });
 		addButton.addEventListener("click", () => {
 			this.openAddInteractionModal();
 		});
@@ -696,17 +695,17 @@ export class ContactPageView extends ItemView {
 		const extrasContent =
 			content.split(/^---\n([\s\S]*?)\n---/).pop() || "";
 
-		if (!extrasContent.trim()) {
-			headerContainer.createEl("div", {
-				cls: "section-helper-text",
-				text: "Add formatted text, links, and other Markdown content",
-			});
-		}
+                if (!extrasContent.trim()) {
+                        headerContainer.createEl("div", {
+                                cls: "section-helper-text",
+                                text: this.plugin.t("add_markdown_help"),
+                        });
+                }
 
-		const editButton = headerContainer.createEl("button", {
-			cls: "friend-tracker-button button-align-right",
-			text: "Edit markdown",
-		});
+                const editButton = headerContainer.createEl("button", {
+                        cls: "friend-tracker-button button-align-right",
+                        text: this.plugin.t("edit_markdown"),
+                });
 
 		editButton.addEventListener("click", () => {
 			this.app.workspace.openLinkText(this._file?.path || "", "", true);
@@ -790,8 +789,8 @@ export class ContactPageView extends ItemView {
 	}
 
 	// Modal methods
-	private async openAddFieldModal() {
-		const modal = new AddFieldModal(this.app, async (fieldName) => {
+        private async openAddFieldModal() {
+                const modal = new AddFieldModal(this.app, this.plugin, async (fieldName) => {
 			if (!this.contactData[fieldName]) {
 				this.contactData[fieldName] = "";
 				await this.saveContactData();

@@ -7,6 +7,7 @@ export interface FriendTrackerSettings {
         relationshipTypes: string[];
         holidayDates: string[];
         defaultActiveTab: "notes" | "interactions" | "markdown";
+        language: string;
 }
 
 export interface Contact {
@@ -40,4 +41,5 @@ export const DEFAULT_SETTINGS: FriendTrackerSettings = {
         relationshipTypes: ["family", "friend", "colleague", "pet"],
         holidayDates: ["01-01", "07-04", "12-25"],
         defaultActiveTab: "notes",
+        language: "en",
 };

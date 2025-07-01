@@ -14,12 +14,12 @@ export class TableView {
                 const headerContainer = container.createEl("div", {
                         cls: "friend-tracker-header",
                 });
-                headerContainer.createEl("h2", { text: "Friend tracker" });
+                headerContainer.createEl("h2", { text: this.view.plugin.t("friend_tracker") });
 
                 const searchInput = headerContainer.createEl("input", {
                         type: "text",
                         cls: "friend-tracker-search-input",
-                        placeholder: "Search...",
+                        placeholder: this.view.plugin.t("search_placeholder"),
                 }) as HTMLInputElement;
                 searchInput.value = this.view.searchQuery;
                 searchInput.addEventListener("input", () =>
@@ -38,10 +38,10 @@ export class TableView {
                         searchInput.setSelectionRange(val.length, val.length);
                 }
 
-		const addButton = headerContainer.createEl("button", {
-			text: "Add contact",
-			cls: "friend-tracker-button button-outlined",
-		});
+                const addButton = headerContainer.createEl("button", {
+                        text: this.view.plugin.t("add_contact"),
+                        cls: "friend-tracker-button button-outlined",
+                });
 		addButton.addEventListener("click", () =>
 			this.view.openAddContactModal()
 		);
@@ -54,9 +54,9 @@ export class TableView {
 			const emptyState = content.createEl("div", {
 				cls: "friend-tracker-empty-state",
 			});
-			emptyState.createEl("p", {
-				text: "No contacts found. Get started by creating your first contact!",
-			});
+                        emptyState.createEl("p", {
+                                text: this.view.plugin.t("no_contacts"),
+                        });
 			return;
 		}
 
@@ -76,23 +76,23 @@ export class TableView {
 
 	private renderTableHeader(table: HTMLTableElement, sort: SortConfig) {
 		const headerRow = table.createEl("tr") as HTMLTableRowElement;
-		const columns: Array<{
-			key: keyof Omit<ContactWithCountdown, "file"> | "actions";
-			label: string;
-			sortable?: boolean;
-		}> = [
-			{ key: "name", label: "Name", sortable: true },
-			{ key: "age", label: "Age", sortable: true },
-			{ key: "birthday", label: "Birthday", sortable: true },
-			{ key: "daysUntilBirthday", label: "Days left", sortable: true },
-			{ key: "relationship", label: "Type", sortable: true },
-			{
-				key: "lastInteraction",
-				label: "Last interaction",
-				sortable: true,
-			},
-			{ key: "actions", label: "", sortable: false },
-		];
+                const columns: Array<{
+                        key: keyof Omit<ContactWithCountdown, "file"> | "actions";
+                        label: string;
+                        sortable?: boolean;
+                }> = [
+                        { key: "name", label: this.view.plugin.t("name"), sortable: true },
+                        { key: "age", label: this.view.plugin.t("age"), sortable: true },
+                        { key: "birthday", label: this.view.plugin.t("birthday"), sortable: true },
+                        { key: "daysUntilBirthday", label: this.view.plugin.t("days_left"), sortable: true },
+                        { key: "relationship", label: this.view.plugin.t("type"), sortable: true },
+                        {
+                                key: "lastInteraction",
+                                label: this.view.plugin.t("last_interaction"),
+                                sortable: true,
+                        },
+                        { key: "actions", label: "", sortable: false },
+                ];
 
 		columns.forEach(({ key, label, sortable }) => {
 			const th = headerRow.createEl("th");
@@ -173,10 +173,10 @@ export class TableView {
 			});
 
 			// Delete button
-			const deleteButton = actionsCell.createEl("button", {
-				cls: "friend-tracker-delete-button",
-				attr: { "aria-label": "Remove contact" },
-			});
+                        const deleteButton = actionsCell.createEl("button", {
+                                cls: "friend-tracker-delete-button",
+                                attr: { "aria-label": this.view.plugin.t("remove_contact") },
+                        });
 			setIcon(deleteButton, "trash");
 
 			deleteButton.addEventListener("click", (e) => {

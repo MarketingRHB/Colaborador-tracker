@@ -1,5 +1,6 @@
 import { Plugin, Notice } from "obsidian";
 import { FriendTrackerSettings, DEFAULT_SETTINGS } from "./types";
+import { loadIni, getPluginDir } from "./i18n";
 import {
 	FriendTrackerView,
 	VIEW_TYPE_FRIEND_TRACKER,
@@ -12,12 +13,18 @@ import { FriendTrackerSettingTab } from "./views/FriendTrackerView/settings";
 import { ContactOperations } from "@/services/ContactOperations";
 
 export default class FriendTracker extends Plugin {
-	settings: FriendTrackerSettings;
-	public contactOperations: ContactOperations;
+        settings: FriendTrackerSettings;
+        public contactOperations: ContactOperations;
+        private translations: Record<string, string> = {};
 
-	async onload() {
-		await this.loadSettings();
-		this.contactOperations = new ContactOperations(this);
+        public t(key: string): string {
+                return this.translations[key] || key;
+        }
+
+        async onload() {
+                await this.loadSettings();
+                await this.loadTranslations();
+                this.contactOperations = new ContactOperations(this);
 
 		// On mobile, we should wait for layout-ready
 		this.app.workspace.onLayoutReady(() => {
@@ -77,7 +84,7 @@ export default class FriendTracker extends Plugin {
 		}
 	}
 
-	private async checkBirthdays() {
+        private async checkBirthdays() {
 		const contacts = await this.contactOperations.getContacts();
 		const birthdayContacts = contacts.filter(
 			(c) => c.daysUntilBirthday === 0
@@ -92,29 +99,40 @@ export default class FriendTracker extends Plugin {
 			} else {
 				const names = birthdayContacts.map((c) => c.name);
 				const lastPerson = names.pop();
-				const nameList = names.join(", ") + " and " + lastPerson;
-				new Notice(`🎂 It's ${nameList}'s birthday today!`, 8000);
-			}
-		}
+                                const nameList = names.join(", ") + " and " + lastPerson;
+                                new Notice(`🎂 It's ${nameList}'s birthday today!`, 8000);
+                        }
+                }
 
-		// Optional: Also notify about tomorrow's birthdays
-		const tomorrowBirthdays = contacts.filter(
-			(c) => c.daysUntilBirthday === 1
-		);
-		if (tomorrowBirthdays.length > 0) {
-			if (tomorrowBirthdays.length === 1) {
-				new Notice(
-					`🎈 ${tomorrowBirthdays[0].name}'s birthday is tomorrow!`,
-					6000 // Show for 6 seconds (slightly shorter for tomorrow's)
-				);
-			} else {
-				const names = tomorrowBirthdays.map((c) => c.name);
-				const lastPerson = names.pop();
-				const nameList = names.join(", ") + " and " + lastPerson;
-				new Notice(`🎈 ${nameList}'s birthdays are tomorrow!`, 6000);
-			}
-		}
-	}
+                // Optional: Also notify about tomorrow's birthdays
+                const tomorrowBirthdays = contacts.filter(
+                        (c) => c.daysUntilBirthday === 1
+                );
+                if (tomorrowBirthdays.length > 0) {
+                        if (tomorrowBirthdays.length === 1) {
+                                new Notice(
+                                        `🎈 ${tomorrowBirthdays[0].name}'s birthday is tomorrow!`,
+                                        6000 // Show for 6 seconds (slightly shorter for tomorrow's)
+                                );
+                        } else {
+                                const names = tomorrowBirthdays.map((c) => c.name);
+                                const lastPerson = names.pop();
+                                const nameList = names.join(", ") + " and " + lastPerson;
+                                new Notice(`🎈 ${nameList}'s birthdays are tomorrow!`, 6000);
+                        }
+                }
+        }
+
+        public async loadTranslations() {
+                try {
+                        const dir = getPluginDir(this.app, this.manifest);
+                        const file = `${dir}/locales/${this.settings.language}.ini`;
+                        this.translations = await loadIni(file);
+                } catch (e) {
+                        console.error('Failed to load translations', e);
+                        this.translations = {};
+                }
+        }
 
 	async loadSettings() {
 		this.settings = Object.assign(

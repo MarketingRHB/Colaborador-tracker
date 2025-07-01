@@ -8,13 +8,13 @@ export function createRelationshipInput(
 	value: string = "",
 	onChange?: (value: string) => void
 ) {
-	const input = container.createEl("input", {
-		cls: "friend-tracker-modal-input",
-		attr: {
-			type: "text",
-			value: value || "",
-			placeholder: "Friend, Family, Colleague, etc.",
-			list: "relationship-types",
+        const input = container.createEl("input", {
+                cls: "friend-tracker-modal-input",
+                attr: {
+                        type: "text",
+                        value: value || "",
+                        placeholder: plugin.t("relationship_placeholder"),
+                        list: "relationship-types",
 			autocomplete: "on",
 			role: "combobox",
 			"aria-autocomplete": "list",
@@ -153,7 +153,7 @@ export class ContactFields {
 			attr: {
 				type: "text",
 				value: value || "",
-				placeholder: "Not set",
+                                placeholder: this.view.plugin.t("not_set"),
 			},
 		});
 
