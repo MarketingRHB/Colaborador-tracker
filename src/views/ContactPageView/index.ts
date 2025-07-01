@@ -320,7 +320,7 @@ export class ContactPageView extends ItemView {
 						);
                                                 new Notice(this.plugin.t("updated_contact_name"));
 
-						// Refresh Friend Tracker view
+                                                // Refresh Colaborador Tracker view
 						const friendTrackerLeaves =
 							this.app.workspace.getLeavesOfType(
 								VIEW_TYPE_FRIEND_TRACKER

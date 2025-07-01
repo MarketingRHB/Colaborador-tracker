@@ -151,7 +151,7 @@ export class AddContactModal extends Modal {
 			// Wait a moment for the file to be indexed
 			await new Promise((resolve) => setTimeout(resolve, 300));
 
-			// Refresh the Friend Tracker view
+                        // Refresh the Colaborador Tracker view
 			const friendTrackerLeaves = this.app.workspace.getLeavesOfType(
 				VIEW_TYPE_FRIEND_TRACKER
 			);
