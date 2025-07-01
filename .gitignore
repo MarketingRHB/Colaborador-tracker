@@ -12,6 +12,11 @@ node_modules
 # They should be uploaded to GitHub releases instead.
 main.js
 
+# Allow built artifacts in release directory
+!release/main.js
+!release/manifest.json
+!release/styles.css
+
 # Exclude sourcemaps
 *.map
 

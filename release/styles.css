@@ -1,0 +1,1201 @@
+/*
+
+This CSS file will be included with your plugin, and
+available in the app when your plugin is enabled.
+
+If your plugin does not need CSS, delete this file.
+
+*/
+
+.friend-tracker-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 32px;
+	padding: 12px 16px;
+	border-bottom: 2px solid var(--background-modifier-border);
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background: rgba(var(--background-primary-rgb), 0.8);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	flex-shrink: 0;
+}
+
+.friend-tracker-header h2 {
+	font-size: 0.75em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--text-muted);
+	margin: 0;
+}
+
+.friend-tracker-header select {
+	padding: var(--size-4-1) var(--size-4-2);
+	box-shadow: none !important;
+	border: 1px solid var(--background-modifier-border);
+	background-color: var(--background-modifier-form-field);
+}
+
+.friend-tracker-header select:hover {
+	border-color: var(--background-modifier-border-hover);
+}
+
+.friend-tracker-header select:focus {
+	outline: none;
+}
+
+.friend-tracker-add-button {
+	/* Remove all styles */
+}
+
+.friend-tracker-empty-state {
+	text-align: center;
+	padding: 40px 20px;
+	color: var(--text-muted);
+}
+
+.friend-tracker-view table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 0;
+}
+
+.friend-tracker-view tr {
+	cursor: default;
+}
+
+.friend-tracker-view tr:hover {
+	background-color: var(--background-modifier-hover);
+}
+
+.friend-tracker-view th,
+.friend-tracker-view td {
+	padding: 8px 12px;
+	text-align: left;
+}
+
+.friend-tracker-sort-button {
+	background: transparent !important;
+	border: none;
+	margin: 0;
+	padding: 8px 0;
+	cursor: pointer;
+	width: auto;
+	min-width: 0;
+	text-align: left;
+	color: var(--text-muted);
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	box-shadow: none !important;
+	border-radius: 0;
+	-webkit-appearance: none;
+	font-weight: inherit;
+	gap: 4px;
+}
+
+.friend-tracker-sort-button:hover {
+	color: var(--text-normal);
+	background: transparent !important;
+}
+
+.friend-tracker-sort-button:active,
+.friend-tracker-sort-button:focus {
+	background: transparent !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+.friend-tracker-sort-button .sort-indicator {
+	font-size: 0.8em;
+	opacity: 0.5;
+	margin-left: 0;
+}
+
+.friend-tracker-sort-button:hover .sort-indicator {
+	opacity: 0.8;
+}
+
+.friend-tracker-sort-button:active {
+	box-shadow: none;
+	background: none;
+}
+
+.friend-tracker-sort-button:focus {
+	box-shadow: none;
+}
+
+.friend-tracker-sort-button:focus-visible {
+	outline: none;
+}
+
+.friend-tracker-actions {
+	text-align: right;
+	padding-right: 16px;
+}
+
+.friend-tracker-delete-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px;
+	background: none;
+	border: none;
+	border-radius: 4px;
+	color: var(--text-muted);
+	cursor: pointer;
+}
+
+.friend-tracker-delete-button:hover {
+	color: var(--text-error);
+	background-color: var(--background-modifier-error-hover);
+}
+
+.friend-tracker-delete-button svg {
+	width: 16px;
+	height: 16px;
+}
+
+.friend-tracker-delete-modal-buttons {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 20px;
+}
+
+.friend-tracker-button-secondary {
+	background-color: var(--background-modifier-hover);
+}
+
+.friend-tracker-button-danger {
+	background-color: var(--background-modifier-error);
+	color: var(--text-on-accent);
+}
+
+/* Contact Page Styles */
+.contact-page-header,
+.contact-info-section,
+.contact-notes-section,
+.contact-interactions,
+.contact-extras-section {
+	padding: 12px 16px;
+}
+
+.contact-page-header {
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.contact-info-section {
+	padding: 12px 16px;
+}
+
+.contact-field {
+	margin-bottom: 0;
+	display: flex;
+	align-items: center;
+}
+
+.contact-field-label,
+.contact-field label {
+	width: 100px;
+	color: var(--text-muted);
+	flex-shrink: 0;
+	text-transform: capitalize;
+}
+
+.contact-field-input {
+	flex: 1;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid var(--background-modifier-border);
+	color: var(--text-normal);
+	padding: 4px 0;
+}
+
+.contact-field-input:hover {
+	border-bottom-color: var(--text-muted);
+}
+
+.contact-field-input:focus {
+	border-bottom-color: var(--interactive-accent);
+	outline: none;
+}
+
+.contact-field-input::placeholder {
+	color: var(--text-faint);
+}
+
+/* Interactions Section */
+.contact-interactions {
+	padding: 12px 16px;
+	border-top: 1px solid var(--background-modifier-border);
+}
+
+.contact-interactions-header {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+	gap: 8px;
+	margin: 12px 0 8px;
+}
+
+.contact-add-interaction-button {
+	padding: 6px 12px;
+	background: none;
+	color: var(--text-muted);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 0.9em;
+	transition: all 0.2s ease;
+}
+
+.contact-add-interaction-button:hover {
+	color: var(--text-normal);
+	border-color: var(--text-muted);
+	background: none;
+}
+
+.contact-interaction-item {
+	display: flex;
+	flex-direction: column;
+	padding: 8px 0;
+	margin: 0;
+	border-bottom: 1px solid var(--background-modifier-border);
+	position: relative;
+}
+
+.contact-interaction-item:last-child {
+	border-bottom: none;
+}
+
+.contact-interaction-date {
+	color: var(--text-muted);
+	font-size: 0.85em;
+	margin-bottom: 4px;
+}
+
+.contact-interaction-text {
+	line-height: 1.4;
+}
+
+.contact-interaction-actions {
+	display: flex;
+	gap: 8px;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+
+.contact-interaction-item:hover .contact-interaction-actions {
+	opacity: 1;
+}
+
+/* Extras Section */
+.contact-extras-section {
+	padding: 12px 16px;
+	border-top: 1px solid var(--background-modifier-border);
+}
+
+.contact-extras-section-list {
+	margin-top: 16px;
+}
+
+.contact-extras-section-item {
+	display: flex;
+	align-items: flex-start;
+	padding: 12px;
+	border-bottom: 1px solid var(--background-modifier-border);
+	gap: 12px;
+}
+
+.contact-extras-section-date {
+	color: var(--text-muted);
+	font-size: 0.9em;
+	width: 100px;
+	flex-shrink: 0;
+}
+
+.contact-extras-section-text {
+	flex: 1;
+	line-height: 1.4;
+}
+
+.contact-extras-section-actions {
+	display: flex;
+	gap: 8px;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+.contact-extras-section-item:hover .contact-extras-section-actions {
+	opacity: 1;
+}
+
+/* Buttons */
+.contact-add-field-button,
+.contact-add-interaction-button {
+	margin-top: 8px;
+	padding: 6px 12px;
+	background: none;
+	color: var(--text-muted);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 0.9em;
+	transition: all 0.2s ease;
+}
+
+.contact-add-field-button:hover,
+.contact-add-interaction-button:hover {
+	color: var(--text-normal);
+	border-color: var(--text-muted);
+	background: none;
+}
+
+.contact-interaction-edit,
+.contact-interaction-delete {
+	background: none;
+	border: none;
+	padding: 4px;
+	border-radius: 4px;
+	color: var(--text-muted);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.contact-interaction-edit:hover {
+	color: var(--text-normal);
+	background-color: var(--background-modifier-hover);
+}
+
+.contact-interaction-delete:hover {
+	color: var(--text-error);
+	background-color: var(--background-modifier-error-hover);
+}
+
+/* Modal Styles */
+.contact-interaction-text-input {
+	width: 100%;
+	min-height: 100px;
+	margin: 16px 0;
+	background: var(--background-modifier-form-field);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	padding: 8px;
+	resize: vertical;
+}
+
+.contact-interaction-submit,
+.contact-add-field-submit {
+	width: 100%;
+	margin-top: 16px;
+	padding: 8px;
+	background-color: var(--interactive-accent);
+	color: var(--text-on-accent);
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+/* Date Input Styles */
+.contact-field-input[type="date"] {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.contact-field-input[type="date"]::-webkit-calendar-picker-indicator {
+	filter: invert(0.5);
+	opacity: 0.6;
+}
+
+.contact-field-input[type="date"]:hover::-webkit-calendar-picker-indicator {
+	opacity: 1;
+}
+
+.contact-name-container {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.contact-name-input {
+	flex: 1;
+	font-size: 2em;
+	font-weight: var(--font-bold);
+	background: transparent;
+	border: 1px solid transparent;
+	color: var(--text-normal);
+	padding: 4px 8px;
+	display: none;
+	border-radius: 4px;
+}
+
+.contact-name-input.editing {
+	display: inline-block;
+}
+
+.contact-name-input:hover {
+	background-color: var(--background-modifier-form-field);
+	border-color: var(--background-modifier-border);
+}
+
+.contact-name-input:focus {
+	background-color: var(--background-modifier-form-field);
+	border-color: var(--interactive-accent);
+	outline: none;
+}
+
+.contact-name-input::placeholder {
+	color: var(--text-faint);
+}
+
+.contact-name-display {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.contact-name-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	gap: 8px;
+}
+
+.contact-name-display h1 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0;
+	line-height: 1.2;
+}
+
+.contact-name-display h1.editing {
+	display: none;
+}
+
+.contact-name-edit {
+	background: none !important;
+	border: none !important;
+	padding: 4px;
+	cursor: pointer;
+	color: var(--text-muted);
+	font-size: 1.2em;
+	height: 28px;
+	width: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease;
+	margin-left: 8px;
+	opacity: 0.5;
+}
+
+.contact-name-row:hover .contact-name-edit {
+	opacity: 1;
+}
+
+.contact-name-edit:hover {
+	color: var(--text-normal);
+	background: var(--background-modifier-hover) !important;
+}
+
+.contact-name-section {
+	display: flex;
+	align-items: center;
+	margin-bottom: 16px;
+}
+
+.contact-name-section input {
+	font-size: var(--h1-size);
+	width: 100%;
+	padding: 4px 8px;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+}
+
+/* Notes Section */
+.contact-notes-section {
+	padding: 12px 16px;
+	border-top: 1px solid var(--background-modifier-border);
+}
+
+.contact-notes-section h2 {
+	font-size: 1.1em;
+	color: var(--text-muted);
+	margin-bottom: 16px;
+}
+
+.contact-notes-input {
+	width: 100%;
+	min-height: 100px;
+	background: var(--background-modifier-form-field);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	padding: 12px;
+	color: var(--text-normal);
+	font-family: inherit;
+	font-size: 0.9em;
+	line-height: 1.6;
+	resize: none;
+	transition: border-color 0.15s ease;
+	height: var(--scroll-height, auto);
+	min-height: 100px;
+	overflow: hidden;
+	transition: height 0.1s ease;
+	margin-top: 12px;
+}
+
+.contact-notes-input:hover {
+	border-color: var(--text-muted);
+}
+
+.contact-notes-input:focus {
+	border-color: var(--interactive-accent);
+	outline: none;
+}
+
+.contact-notes-input::placeholder {
+	color: var(--text-faint);
+	font-style: italic;
+}
+
+.contact-notes-input.adjusting {
+	height: auto !important;
+}
+
+.contact-notes-input[data-height] {
+	height: attr(data-height px);
+}
+
+.contact-notes-input.measuring {
+	height: 0 !important;
+}
+
+.friend-tracker-name-cell {
+	cursor: pointer;
+	position: relative;
+}
+
+.table-birthday-status-dot {
+	position: absolute;
+	left: -10px;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 2px;
+	border-radius: 9999px;
+	background-color: rgba(var(--color-green-rgb), 0.1);
+}
+
+.table-birthday-status-dot-inner {
+	width: 6px;
+	height: 6px;
+	border-radius: 9999px;
+	background-color: var(--color-green);
+}
+
+/* Modal Styles */
+.friend-tracker-modal-field {
+	margin-bottom: 16px;
+}
+
+.friend-tracker-modal-field label {
+	display: block;
+	margin-bottom: 4px;
+	color: var(--text-muted);
+	font-size: 0.9em;
+}
+
+.friend-tracker-modal-input {
+	width: 100%;
+	padding: 8px;
+	background: var(--background-modifier-form-field);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	color: var(--text-normal);
+}
+.friend-tracker-modal-input.relationship-type-input {
+        width: 200px;
+}
+.friend-tracker-modal-input.holiday-date-input {
+        width: 200px;
+}
+.friend-tracker-modal-input:focus {
+	border-color: var(--interactive-accent);
+	outline: none;
+}
+
+.friend-tracker-modal-buttons {
+	margin-top: 24px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+/* Update modal button styles */
+.modal .friend-tracker-button {
+	margin-top: 16px;
+}
+
+.modal .friend-tracker-button.button-primary {
+	width: 100%; /* Make modal submit buttons full width */
+}
+
+.friend-tracker-add-contact-form {
+	margin-top: 16px;
+}
+
+.friend-tracker-view {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100vh;
+	height: -webkit-fill-available;
+	min-height: -webkit-fill-available;
+}
+
+.friend-tracker-content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	min-height: 0;
+	-webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Table styles */
+.friend-tracker-table {
+	width: 100%;
+	min-width: 600px;
+	border-collapse: collapse;
+	margin: 0;
+	table-layout: auto;
+}
+
+/* Base styles for all cells */
+.friend-tracker-table th,
+.friend-tracker-table td {
+	padding: 8px 12px;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.contact-age-display {
+	color: var(--text-muted);
+	font-size: 0.9em;
+	margin-top: 4px;
+}
+
+.contact-birthday-countdown {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 4px;
+	background: var(--background-primary);
+	padding: 4px 8px;
+	border-radius: 6px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	color: var(--text-muted);
+	font-size: 0.9em;
+	position: relative;
+}
+
+.birthday-status-dot {
+	flex-shrink: 0;
+	padding: 2px;
+	border-radius: 9999px;
+	background-color: rgba(var(--color-green-rgb), 0.1);
+}
+
+.birthday-status-dot-inner {
+	width: 6px;
+	height: 6px;
+	border-radius: 9999px;
+	background-color: var(--color-green);
+}
+
+.friend-tracker-table-container {
+	flex: 1;
+	padding: 0 16px;
+	min-width: 100%;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* Style for relationship type settings */
+.friend-tracker-relationship-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+.friend-tracker-relationship-header h3 {
+	margin: 0;
+}
+
+/* Remove default Setting styles in header */
+.friend-tracker-relationship-header .setting-item {
+	border: none;
+	padding: 0;
+}
+
+.friend-tracker-relationship-header .setting-item-control {
+	padding: 0;
+}
+
+.friend-tracker-relationship-types {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 12px;
+}
+
+.friend-tracker-relationship-types .setting-item {
+	border: none;
+	padding: 8px;
+	margin: 0;
+	background: var(--background-modifier-form-field);
+	border-radius: 4px;
+}
+
+.friend-tracker-relationship-types .setting-item-info {
+	display: none;
+}
+
+.friend-tracker-relationship-types .setting-item-control {
+	flex: 1;
+	justify-content: space-between;
+	padding: 0;
+}
+
+.friend-tracker-relationship-types .setting-item-control input {
+        text-align: left;
+        text-transform: capitalize;
+}
+
+/* Style for holiday date settings */
+.friend-tracker-holiday-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+}
+
+.friend-tracker-holiday-header h3 {
+        margin: 0;
+}
+
+/* Remove default Setting styles in holiday header */
+.friend-tracker-holiday-header .setting-item {
+        border: none;
+        padding: 0;
+}
+
+.friend-tracker-holiday-header .setting-item-control {
+        padding: 0;
+}
+
+.friend-tracker-holiday-dates {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+}
+
+.friend-tracker-holiday-dates .setting-item {
+        border: none;
+        padding: 8px;
+        margin: 0;
+        background: var(--background-modifier-form-field);
+        border-radius: 4px;
+}
+
+.friend-tracker-holiday-dates .setting-item-info {
+        display: none;
+}
+
+.friend-tracker-holiday-dates .setting-item-control {
+        flex: 1;
+        justify-content: space-between;
+        padding: 0;
+}
+
+.friend-tracker-holiday-dates .setting-item-control input {
+        text-align: left;
+}
+
+/* Capitalize relationship values in table */
+.friend-tracker-relationship-cell {
+	text-transform: capitalize;
+}
+
+/* Capitalize relationship input field */
+.contact-field input[list="relationship-types"] {
+	text-transform: capitalize;
+}
+
+.contact-interaction-date,
+.contact-interaction-text,
+.contact-age-display,
+.contact-extras-content {
+	-webkit-user-select: text;
+	user-select: text;
+	cursor: text;
+}
+
+.contact-extras-header {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+	gap: 8px;
+	margin: 12px 0 8px;
+}
+
+.contact-extras-edit {
+	background: none;
+	border: none;
+	padding: 2px;
+	border-radius: 4px;
+	color: var(--text-muted);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 20px;
+	width: 20px;
+	margin-left: 8px;
+	transition: color 0.2s ease;
+}
+
+.contact-extras-edit:hover {
+	color: var(--text-normal);
+	background-color: var(--background-modifier-hover);
+}
+
+.contact-info-header {
+	display: none;
+}
+
+.contact-info-edit-button,
+.contact-info-done-button {
+	margin-top: 16px;
+	padding: 6px 12px;
+	background-color: var(--interactive-accent);
+	color: var(--text-on-accent);
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 0.9em;
+	transition: all 0.2s ease;
+	align-self: flex-end;
+}
+
+.contact-info-edit-button:hover,
+.contact-info-done-button:hover {
+	background-color: var(--interactive-accent-hover);
+	color: var(--text-on-accent);
+}
+
+.contact-info-done-button {
+	margin-top: 24px;
+	background-color: var(--interactive-accent);
+	color: var(--text-on-accent);
+}
+
+.contact-info-done-button:hover {
+	background-color: var(--interactive-accent-hover);
+	color: var(--text-on-accent);
+}
+
+.contact-fields-container {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 12px 0;
+}
+
+.contact-field-view {
+	display: flex;
+	gap: 12px;
+	padding: 4px 0;
+	align-items: center;
+}
+
+.contact-field-value {
+	flex: 1;
+	color: var(--text-normal);
+	cursor: text;
+	-webkit-user-select: text;
+	user-select: text;
+	padding: 2px 0;
+}
+
+/* Only capitalize relationship values */
+.contact-field-view[data-field="relationship"] .contact-field-value {
+	text-transform: capitalize;
+}
+
+.contact-field-view:last-of-type {
+	margin-bottom: 0;
+}
+
+:root {
+	--color-green: rgb(74, 222, 128);
+	--color-green-rgb: 74, 222, 128;
+}
+
+.table-birthday-indicator {
+	position: absolute;
+	left: -10px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 14px;
+	line-height: 1;
+}
+
+.table-birthday-indicator.birthday-today {
+	animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(-50%);
+	}
+	50% {
+		transform: translateY(-65%);
+	}
+}
+
+.contact-birthday-countdown .table-birthday-indicator,
+.contact-birthday-countdown .birthday-status-dot {
+	margin-left: -2px;
+}
+
+.contact-tabs {
+	display: flex;
+	border-bottom: 1px solid var(--background-modifier-border);
+	margin: 0;
+	padding: 16px 16px 0;
+	gap: 12px;
+}
+
+.contact-tab {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 2px;
+	color: var(--text-muted);
+	font-size: 14px;
+	background: none !important;
+	box-shadow: none !important;
+	border: none;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -1px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-weight: 500;
+	-webkit-appearance: none;
+	appearance: none;
+	border-radius: 0;
+}
+
+.contact-tab:hover {
+	color: var(--text-normal);
+	background: none !important;
+}
+
+.contact-tab:focus {
+	outline: none !important;
+	box-shadow: none !important;
+	background: none !important;
+}
+
+.contact-tab.active {
+	color: var(--text-accent);
+	border-bottom-color: var(--text-accent);
+	background: none !important;
+}
+
+/* Remove border-top from sections */
+.contact-notes-section,
+.contact-interactions,
+.contact-extras-section {
+	padding: 12px 16px;
+	border-top: none;
+}
+
+/* Make tabs more compact on mobile */
+@media (max-width: 600px) {
+	.contact-tabs {
+		gap: 16px;
+		padding: 16px 16px 0;
+	}
+
+	.contact-interactions-header,
+	.contact-extras-header {
+		grid-template-columns: 1fr;
+		gap: 8px;
+		margin: 12px 0 8px;
+	}
+
+	.section-helper-text {
+		text-align: center;
+	}
+
+	.contact-interactions-header .friend-tracker-button,
+	.contact-extras-header .friend-tracker-button {
+		width: 100%;
+		justify-content: center;
+	}
+
+	/* Keep all section padding consistent on mobile */
+	.contact-page-header,
+	.contact-info-section,
+	.contact-notes-section,
+	.contact-interactions,
+	.contact-extras-section,
+	.contact-content {
+		padding: 12px 16px;
+	}
+}
+
+.contact-content {
+	padding: 0;
+	overflow: auto;
+}
+
+/* Base button styles */
+.friend-tracker-button {
+	background: none !important;
+	border: 1px solid var(--background-modifier-border) !important;
+	color: var(--text-muted);
+	cursor: pointer;
+	padding: 6px 12px;
+	font-size: 0.9em;
+	transition: all 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	border-radius: 4px;
+	-webkit-appearance: none;
+	appearance: none;
+	justify-content: center;
+	margin-top: 12px;
+}
+
+/* Button hover state */
+.friend-tracker-button:hover {
+	background: var(--background-modifier-hover) !important;
+	color: var(--text-normal);
+	border-color: var(--text-muted) !important;
+}
+
+/* Primary/accent button variant - override the border */
+.friend-tracker-button.button-primary {
+	background-color: var(--interactive-accent) !important;
+	color: var(--text-on-accent) !important;
+	border: none !important;
+}
+
+/* Remove the button-outlined class since all buttons now have borders by default */
+.friend-tracker-button.button-outlined {
+	/* Remove this class */
+}
+
+/* Icon-only button variant */
+.friend-tracker-button.button-icon {
+	padding: 4px;
+	height: 28px;
+	width: 28px;
+	justify-content: center;
+}
+
+/* Icon size for icon buttons */
+.friend-tracker-button.button-icon svg {
+	width: 16px;
+	height: 16px;
+}
+
+/* Danger button variant */
+.friend-tracker-button.button-danger:hover {
+	color: var(--text-error);
+	background: var(--background-modifier-error-hover) !important;
+}
+
+/* Full width variant */
+.friend-tracker-button.button-full-width {
+	width: 100%;
+}
+
+/* Position modifiers */
+.button-align-right {
+	margin-left: auto;
+}
+
+/* Remove ALL old button styles */
+.contact-add-field-button,
+.contact-add-interaction-button,
+.contact-interaction-edit,
+.contact-interaction-delete,
+.contact-info-edit-button,
+.contact-info-done-button,
+.contact-extras-edit,
+.contact-name-edit,
+.friend-tracker-add-button,
+.contact-interaction-submit,
+.contact-add-field-submit {
+	/* Remove all styles */
+}
+
+/* Update tab styles to not conflict with button styles */
+.contact-tab {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 2px;
+	color: var(--text-muted);
+	font-size: 14px;
+	background: none !important;
+	box-shadow: none !important;
+	border: none;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -1px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-weight: 500;
+	-webkit-appearance: none;
+	appearance: none;
+	border-radius: 0;
+}
+
+/* Style for helper text */
+.section-helper-text {
+        margin: 12px 0 8px;
+        color: var(--text-muted);
+        font-size: 0.9em;
+        line-height: 1.4;
+}
+
+.friend-tracker-search-input {
+        flex-grow: 1;
+        padding: 4px 8px;
+        background: var(--background-modifier-form-field);
+        border: 1px solid var(--background-modifier-border);
+        border-radius: 4px;
+}
+
+.friend-tracker-search-input:focus {
+        outline: none;
+        border-color: var(--interactive-accent);
+}
