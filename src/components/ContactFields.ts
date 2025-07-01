@@ -1,15 +1,15 @@
 import type { ContactPageView } from "@/views/ContactPageView";
 import { STANDARD_FIELDS } from "@/constants";
-import type FriendTracker from "@/main";
+import type CollaboratorTracker from "@/main";
 
 export function createRelationshipInput(
 	container: HTMLElement,
-	plugin: FriendTracker,
+	plugin: CollaboratorTracker,
 	value: string = "",
 	onChange?: (value: string) => void
 ) {
         const input = container.createEl("input", {
-                cls: "friend-tracker-modal-input",
+                cls: "collaborator-tracker-modal-input",
                 attr: {
                         type: "text",
                         value: value || "",

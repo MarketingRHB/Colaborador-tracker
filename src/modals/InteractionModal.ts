@@ -19,7 +19,7 @@ export class InteractionModal extends Modal {
 		const { contentEl } = this;
 		contentEl.empty();
 
-                const plugin = (this.app as any).plugins.getPlugin("friend-tracker");
+                const plugin = (this.app as any).plugins.getPlugin("collaborator-tracker");
                 contentEl.createEl("h2", {
                         text: this.interaction
                                 ? plugin?.t("edit_interaction") || "Edit interaction"
@@ -71,7 +71,7 @@ export class InteractionModal extends Modal {
                                         ? plugin?.t("save_changes") || "Save changes"
                                         : plugin?.t("add_interaction") || "Add interaction",
                         attr: { type: "submit" },
-                        cls: "friend-tracker-button button-primary",
+                        cls: "collaborator-tracker-button button-primary",
                 });
 	}
 
