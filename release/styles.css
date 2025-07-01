@@ -7,7 +7,9 @@ If your plugin does not need CSS, delete this file.
 
 */
 
-.friend-tracker-header {
+
+.collaborator-tracker-header {
+
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -24,7 +26,9 @@ If your plugin does not need CSS, delete this file.
 	flex-shrink: 0;
 }
 
-.friend-tracker-header h2 {
+
+.collaborator-tracker-header h2 {
+
 	font-size: 0.75em;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -33,52 +37,62 @@ If your plugin does not need CSS, delete this file.
 	margin: 0;
 }
 
-.friend-tracker-header select {
+
+.collaborator-tracker-header select {
+
 	padding: var(--size-4-1) var(--size-4-2);
 	box-shadow: none !important;
 	border: 1px solid var(--background-modifier-border);
 	background-color: var(--background-modifier-form-field);
 }
 
-.friend-tracker-header select:hover {
+
+.collaborator-tracker-header select:hover {
 	border-color: var(--background-modifier-border-hover);
 }
 
-.friend-tracker-header select:focus {
+.collaborator-tracker-header select:focus {
 	outline: none;
 }
 
-.friend-tracker-add-button {
+.collaborator-tracker-add-button {
 	/* Remove all styles */
 }
 
-.friend-tracker-empty-state {
+.collaborator-tracker-empty-state {
+
 	text-align: center;
 	padding: 40px 20px;
 	color: var(--text-muted);
 }
 
-.friend-tracker-view table {
+
+.collaborator-tracker-view table {
+
 	border-collapse: collapse;
 	width: 100%;
 	margin: 0;
 }
 
-.friend-tracker-view tr {
+
+.collaborator-tracker-view tr {
 	cursor: default;
 }
 
-.friend-tracker-view tr:hover {
+.collaborator-tracker-view tr:hover {
 	background-color: var(--background-modifier-hover);
 }
 
-.friend-tracker-view th,
-.friend-tracker-view td {
+.collaborator-tracker-view th,
+.collaborator-tracker-view td {
+
 	padding: 8px 12px;
 	text-align: left;
 }
 
-.friend-tracker-sort-button {
+
+.collaborator-tracker-sort-button {
+
 	background: transparent !important;
 	border: none;
 	margin: 0;
@@ -98,47 +112,59 @@ If your plugin does not need CSS, delete this file.
 	gap: 4px;
 }
 
-.friend-tracker-sort-button:hover {
+
+.collaborator-tracker-sort-button:hover {
+
 	color: var(--text-normal);
 	background: transparent !important;
 }
 
-.friend-tracker-sort-button:active,
-.friend-tracker-sort-button:focus {
+
+.collaborator-tracker-sort-button:active,
+.collaborator-tracker-sort-button:focus {
+
 	background: transparent !important;
 	box-shadow: none !important;
 	outline: none !important;
 }
 
-.friend-tracker-sort-button .sort-indicator {
+
+.collaborator-tracker-sort-button .sort-indicator {
+
 	font-size: 0.8em;
 	opacity: 0.5;
 	margin-left: 0;
 }
 
-.friend-tracker-sort-button:hover .sort-indicator {
+
+.collaborator-tracker-sort-button:hover .sort-indicator {
 	opacity: 0.8;
 }
 
-.friend-tracker-sort-button:active {
+.collaborator-tracker-sort-button:active {
+
 	box-shadow: none;
 	background: none;
 }
 
-.friend-tracker-sort-button:focus {
+
+.collaborator-tracker-sort-button:focus {
 	box-shadow: none;
 }
 
-.friend-tracker-sort-button:focus-visible {
+.collaborator-tracker-sort-button:focus-visible {
 	outline: none;
 }
 
-.friend-tracker-actions {
+.collaborator-tracker-actions {
+
 	text-align: right;
 	padding-right: 16px;
 }
 
-.friend-tracker-delete-button {
+
+.collaborator-tracker-delete-button {
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -150,28 +176,36 @@ If your plugin does not need CSS, delete this file.
 	cursor: pointer;
 }
 
-.friend-tracker-delete-button:hover {
+
+.collaborator-tracker-delete-button:hover {
+
 	color: var(--text-error);
 	background-color: var(--background-modifier-error-hover);
 }
 
-.friend-tracker-delete-button svg {
+
+.collaborator-tracker-delete-button svg {
+
 	width: 16px;
 	height: 16px;
 }
 
-.friend-tracker-delete-modal-buttons {
+
+.collaborator-tracker-delete-modal-buttons {
+
 	display: flex;
 	justify-content: flex-end;
 	gap: 8px;
 	margin-top: 20px;
 }
 
-.friend-tracker-button-secondary {
+
+.collaborator-tracker-button-secondary {
 	background-color: var(--background-modifier-hover);
 }
 
-.friend-tracker-button-danger {
+.collaborator-tracker-button-danger {
+
 	background-color: var(--background-modifier-error);
 	color: var(--text-on-accent);
 }
@@ -583,7 +617,9 @@ If your plugin does not need CSS, delete this file.
 	height: 0 !important;
 }
 
-.friend-tracker-name-cell {
+
+.collaborator-tracker-name-cell {
+
 	cursor: pointer;
 	position: relative;
 }
@@ -606,18 +642,22 @@ If your plugin does not need CSS, delete this file.
 }
 
 /* Modal Styles */
-.friend-tracker-modal-field {
+
+.collaborator-tracker-modal-field {
 	margin-bottom: 16px;
 }
 
-.friend-tracker-modal-field label {
+.collaborator-tracker-modal-field label {
+
 	display: block;
 	margin-bottom: 4px;
 	color: var(--text-muted);
 	font-size: 0.9em;
 }
 
-.friend-tracker-modal-input {
+
+.collaborator-tracker-modal-input {
+
 	width: 100%;
 	padding: 8px;
 	background: var(--background-modifier-form-field);
@@ -625,37 +665,43 @@ If your plugin does not need CSS, delete this file.
 	border-radius: 4px;
 	color: var(--text-normal);
 }
-.friend-tracker-modal-input.relationship-type-input {
+
+.collaborator-tracker-modal-input.relationship-type-input {
         width: 200px;
 }
-.friend-tracker-modal-input.holiday-date-input {
+.collaborator-tracker-modal-input.holiday-date-input {
         width: 200px;
 }
-.friend-tracker-modal-input:focus {
+.collaborator-tracker-modal-input:focus {
+
 	border-color: var(--interactive-accent);
 	outline: none;
 }
 
-.friend-tracker-modal-buttons {
+
+.collaborator-tracker-modal-buttons {
+
 	margin-top: 24px;
 	display: flex;
 	justify-content: flex-end;
 }
 
 /* Update modal button styles */
-.modal .friend-tracker-button {
+
+.modal .collaborator-tracker-button {
 	margin-top: 16px;
 }
 
-.modal .friend-tracker-button.button-primary {
+.modal .collaborator-tracker-button.button-primary {
 	width: 100%; /* Make modal submit buttons full width */
 }
 
-.friend-tracker-add-contact-form {
+.collaborator-tracker-add-contact-form {
 	margin-top: 16px;
 }
 
-.friend-tracker-view {
+.collaborator-tracker-view {
+
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -664,7 +710,9 @@ If your plugin does not need CSS, delete this file.
 	min-height: -webkit-fill-available;
 }
 
-.friend-tracker-content {
+
+.collaborator-tracker-content {
+
 	flex: 1;
 	display: flex;
 	flex-direction: column;
@@ -674,7 +722,9 @@ If your plugin does not need CSS, delete this file.
 }
 
 /* Table styles */
-.friend-tracker-table {
+
+.collaborator-tracker-table {
+
 	width: 100%;
 	min-width: 600px;
 	border-collapse: collapse;
@@ -683,8 +733,10 @@ If your plugin does not need CSS, delete this file.
 }
 
 /* Base styles for all cells */
-.friend-tracker-table th,
-.friend-tracker-table td {
+
+.collaborator-tracker-table th,
+.collaborator-tracker-table td {
+
 	padding: 8px 12px;
 	text-align: left;
 	white-space: nowrap;
@@ -724,7 +776,9 @@ If your plugin does not need CSS, delete this file.
 	background-color: var(--color-green);
 }
 
-.friend-tracker-table-container {
+
+.collaborator-tracker-table-container {
+
 	flex: 1;
 	padding: 0 16px;
 	min-width: 100%;
@@ -732,34 +786,44 @@ If your plugin does not need CSS, delete this file.
 }
 
 /* Style for relationship type settings */
-.friend-tracker-relationship-header {
+
+.collaborator-tracker-relationship-header {
+
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 12px;
 }
 
-.friend-tracker-relationship-header h3 {
+
+.collaborator-tracker-relationship-header h3 {
+
 	margin: 0;
 }
 
 /* Remove default Setting styles in header */
-.friend-tracker-relationship-header .setting-item {
+
+.collaborator-tracker-relationship-header .setting-item {
+
 	border: none;
 	padding: 0;
 }
 
-.friend-tracker-relationship-header .setting-item-control {
+
+.collaborator-tracker-relationship-header .setting-item-control {
 	padding: 0;
 }
 
-.friend-tracker-relationship-types {
+.collaborator-tracker-relationship-types {
+
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	gap: 12px;
 }
 
-.friend-tracker-relationship-types .setting-item {
+
+.collaborator-tracker-relationship-types .setting-item {
+
 	border: none;
 	padding: 8px;
 	margin: 0;
@@ -767,50 +831,63 @@ If your plugin does not need CSS, delete this file.
 	border-radius: 4px;
 }
 
-.friend-tracker-relationship-types .setting-item-info {
+
+.collaborator-tracker-relationship-types .setting-item-info {
 	display: none;
 }
 
-.friend-tracker-relationship-types .setting-item-control {
+.collaborator-tracker-relationship-types .setting-item-control {
+
 	flex: 1;
 	justify-content: space-between;
 	padding: 0;
 }
 
-.friend-tracker-relationship-types .setting-item-control input {
+.collaborator-tracker-relationship-types .setting-item-control input {
+
         text-align: left;
         text-transform: capitalize;
 }
 
 /* Style for holiday date settings */
-.friend-tracker-holiday-header {
+
+.collaborator-tracker-holiday-header {
+
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 12px;
 }
 
-.friend-tracker-holiday-header h3 {
+
+.collaborator-tracker-holiday-header h3 {
+
         margin: 0;
 }
 
 /* Remove default Setting styles in holiday header */
-.friend-tracker-holiday-header .setting-item {
+
+.collaborator-tracker-holiday-header .setting-item {
+
         border: none;
         padding: 0;
 }
 
-.friend-tracker-holiday-header .setting-item-control {
+
+.collaborator-tracker-holiday-header .setting-item-control {
         padding: 0;
 }
 
-.friend-tracker-holiday-dates {
+.collaborator-tracker-holiday-dates {
+
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 12px;
 }
 
-.friend-tracker-holiday-dates .setting-item {
+
+.collaborator-tracker-holiday-dates .setting-item {
+
         border: none;
         padding: 8px;
         margin: 0;
@@ -818,22 +895,28 @@ If your plugin does not need CSS, delete this file.
         border-radius: 4px;
 }
 
-.friend-tracker-holiday-dates .setting-item-info {
+
+.collaborator-tracker-holiday-dates .setting-item-info {
         display: none;
 }
 
-.friend-tracker-holiday-dates .setting-item-control {
+.collaborator-tracker-holiday-dates .setting-item-control {
+
         flex: 1;
         justify-content: space-between;
         padding: 0;
 }
 
-.friend-tracker-holiday-dates .setting-item-control input {
+
+.collaborator-tracker-holiday-dates .setting-item-control input {
+
         text-align: left;
 }
 
 /* Capitalize relationship values in table */
-.friend-tracker-relationship-cell {
+
+.collaborator-tracker-relationship-cell {
+
 	text-transform: capitalize;
 }
 
@@ -1052,8 +1135,10 @@ If your plugin does not need CSS, delete this file.
 		text-align: center;
 	}
 
-	.contact-interactions-header .friend-tracker-button,
-	.contact-extras-header .friend-tracker-button {
+
+	.contact-interactions-header .collaborator-tracker-button,
+	.contact-extras-header .collaborator-tracker-button {
+
 		width: 100%;
 		justify-content: center;
 	}
@@ -1075,7 +1160,9 @@ If your plugin does not need CSS, delete this file.
 }
 
 /* Base button styles */
-.friend-tracker-button {
+
+.collaborator-tracker-button {
+
 	background: none !important;
 	border: 1px solid var(--background-modifier-border) !important;
 	color: var(--text-muted);
@@ -1094,26 +1181,29 @@ If your plugin does not need CSS, delete this file.
 }
 
 /* Button hover state */
-.friend-tracker-button:hover {
+
+.collaborator-tracker-button:hover {
+
 	background: var(--background-modifier-hover) !important;
 	color: var(--text-normal);
 	border-color: var(--text-muted) !important;
 }
 
 /* Primary/accent button variant - override the border */
-.friend-tracker-button.button-primary {
+
+.collaborator-tracker-button.button-primary {
+
 	background-color: var(--interactive-accent) !important;
 	color: var(--text-on-accent) !important;
 	border: none !important;
 }
 
-/* Remove the button-outlined class since all buttons now have borders by default */
-.friend-tracker-button.button-outlined {
-	/* Remove this class */
-}
+
 
 /* Icon-only button variant */
-.friend-tracker-button.button-icon {
+
+.collaborator-tracker-button.button-icon {
+
 	padding: 4px;
 	height: 28px;
 	width: 28px;
@@ -1121,19 +1211,25 @@ If your plugin does not need CSS, delete this file.
 }
 
 /* Icon size for icon buttons */
-.friend-tracker-button.button-icon svg {
+
+.collaborator-tracker-button.button-icon svg {
+
 	width: 16px;
 	height: 16px;
 }
 
 /* Danger button variant */
-.friend-tracker-button.button-danger:hover {
+
+.collaborator-tracker-button.button-danger:hover {
+
 	color: var(--text-error);
 	background: var(--background-modifier-error-hover) !important;
 }
 
 /* Full width variant */
-.friend-tracker-button.button-full-width {
+
+.collaborator-tracker-button.button-full-width {
+
 	width: 100%;
 }
 
@@ -1151,7 +1247,9 @@ If your plugin does not need CSS, delete this file.
 .contact-info-done-button,
 .contact-extras-edit,
 .contact-name-edit,
-.friend-tracker-add-button,
+
+.collaborator-tracker-add-button,
+
 .contact-interaction-submit,
 .contact-add-field-submit {
 	/* Remove all styles */
@@ -1187,7 +1285,9 @@ If your plugin does not need CSS, delete this file.
         line-height: 1.4;
 }
 
-.friend-tracker-search-input {
+
+.collaborator-tracker-search-input {
+
         flex-grow: 1;
         padding: 4px 8px;
         background: var(--background-modifier-form-field);
@@ -1195,7 +1295,9 @@ If your plugin does not need CSS, delete this file.
         border-radius: 4px;
 }
 
-.friend-tracker-search-input:focus {
+
+.collaborator-tracker-search-input:focus {
+
         outline: none;
         border-color: var(--interactive-accent);
 }

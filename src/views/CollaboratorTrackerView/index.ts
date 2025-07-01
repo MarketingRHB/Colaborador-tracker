@@ -1,5 +1,5 @@
 import { ItemView, WorkspaceLeaf, EventRef, TFile, Platform } from "obsidian";
-import type FriendTracker from "@/main";
+import type CollaboratorTracker from "@/main";
 import { TableView } from "./TableView";
 import { ContactOperations } from "@/services/ContactOperations";
 import { VIEW_TYPE_CONTACT_PAGE } from "@/views/ContactPageView";
@@ -7,9 +7,9 @@ import type { SortConfig, ContactWithCountdown } from "@/types";
 import { AddContactModal } from "@/modals/AddContactModal";
 import { DeleteContactModal } from "@/modals/DeleteContactModal";
 
-export const VIEW_TYPE_FRIEND_TRACKER = "friend-tracker-view";
+export const VIEW_TYPE_COLLABORATOR_TRACKER = "collaborator-tracker-view";
 
-export class FriendTrackerView extends ItemView {
+export class CollaboratorTrackerView extends ItemView {
         currentSort: SortConfig;
         private tableView: TableView;
         private contactOps: ContactOperations;
@@ -20,7 +20,7 @@ export class FriendTrackerView extends ItemView {
         public searchFocused = false;
         public searchInput: HTMLInputElement | null = null;
 
-        constructor(leaf: WorkspaceLeaf, public plugin: FriendTracker) {
+        constructor(leaf: WorkspaceLeaf, public plugin: CollaboratorTracker) {
 		super(leaf);
 		this.currentSort = {
 			column: this.plugin.settings.defaultSortColumn,
@@ -82,12 +82,12 @@ export class FriendTrackerView extends ItemView {
         }
 
 	getViewType(): string {
-		return VIEW_TYPE_FRIEND_TRACKER;
+		return VIEW_TYPE_COLLABORATOR_TRACKER;
 	}
 
-        getDisplayText(): string {
-                return "Colaborador Tracker";
-        }
+       getDisplayText(): string {
+               return "Collaborator Tracker";
+       }
 
 	async onOpen() {
 		this.registerEvent(

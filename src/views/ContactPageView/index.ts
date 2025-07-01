@@ -7,14 +7,14 @@ import {
 	parseYaml,
 	MarkdownRenderer,
 } from "obsidian";
-import type FriendTracker from "@/main";
+import type CollaboratorTracker from "@/main";
 import { ContactFields } from "@/components/ContactFields";
 import { InteractionView } from "@/components/InteractionView";
 import type { Interaction } from "@/types";
 import { AddFieldModal } from "@/modals/AddFieldModal";
 import { InteractionModal } from "@/modals/InteractionModal";
-import { VIEW_TYPE_FRIEND_TRACKER } from "@/views/FriendTrackerView";
-import { FriendTrackerView } from "@/views/FriendTrackerView";
+import { VIEW_TYPE_COLLABORATOR_TRACKER } from "@/views/CollaboratorTrackerView";
+import { CollaboratorTrackerView } from "@/views/CollaboratorTrackerView";
 import { STANDARD_FIELDS, SYSTEM_FIELDS } from "@/constants";
 
 export const VIEW_TYPE_CONTACT_PAGE = "contact-page-view";
@@ -24,7 +24,7 @@ export class ContactPageView extends ItemView {
 	private contactData: any = {};
 	private contactFields: ContactFields;
 	private interactionView: InteractionView;
-	public plugin: FriendTracker;
+	public plugin: CollaboratorTracker;
 	private activeTab: "notes" | "interactions" | "markdown";
 
 	public getRelationshipTypes(): string[] {
@@ -42,7 +42,7 @@ export class ContactPageView extends ItemView {
 		await this.plugin.saveSettings();
 	}
 
-	constructor(leaf: WorkspaceLeaf, private _plugin: FriendTracker) {
+	constructor(leaf: WorkspaceLeaf, private _plugin: CollaboratorTracker) {
 		super(leaf);
 		this.plugin = _plugin;
 		this.contactFields = new ContactFields(this);
@@ -202,7 +202,7 @@ export class ContactPageView extends ItemView {
 		});
 
 		const editButton = editContainer.createEl("button", {
-			cls: "friend-tracker-button button-icon contact-name-edit",
+			cls: "collaborator-tracker-button button-icon contact-name-edit",
 		});
 		setIcon(editButton, "pencil");
 
@@ -320,14 +320,14 @@ export class ContactPageView extends ItemView {
 						);
                                                 new Notice(this.plugin.t("updated_contact_name"));
 
-                                                // Refresh Colaborador Tracker view
-						const friendTrackerLeaves =
+                                               // Refresh Collaborator Tracker view
+						const collaboratorTrackerLeaves =
 							this.app.workspace.getLeavesOfType(
-								VIEW_TYPE_FRIEND_TRACKER
+								VIEW_TYPE_COLLABORATOR_TRACKER
 							);
-						for (const leaf of friendTrackerLeaves) {
+						for (const leaf of collaboratorTrackerLeaves) {
 							const view = await leaf.view;
-							if (view instanceof FriendTrackerView) {
+							if (view instanceof CollaboratorTrackerView) {
 								await view.refresh();
 								break;
 							}
@@ -523,7 +523,7 @@ export class ContactPageView extends ItemView {
 
 			// Add edit button at the bottom
                         const editButton = fieldsContainer.createEl("button", {
-                                cls: "friend-tracker-button",
+                                cls: "collaborator-tracker-button",
                                 text: this.plugin.t("edit"),
                         });
 
@@ -562,7 +562,7 @@ export class ContactPageView extends ItemView {
 
 			// Add custom field button
                         const addFieldButton = fieldsContainer.createEl("button", {
-                                cls: "friend-tracker-button button-outlined",
+                                cls: "collaborator-tracker-button button-outlined",
                                 text: this.plugin.t("add_custom_field"),
                         });
 			addFieldButton.addEventListener("click", () => {
@@ -571,7 +571,7 @@ export class ContactPageView extends ItemView {
 
 			// Add done button
                         const doneButton = fieldsContainer.createEl("button", {
-                                cls: "friend-tracker-button button-primary button-full-width",
+                                cls: "collaborator-tracker-button button-primary button-full-width",
                                 text: this.plugin.t("done"),
                         });
 
@@ -664,7 +664,7 @@ export class ContactPageView extends ItemView {
 		}
 
                 const addButton = headerContainer.createEl("button", {
-                        cls: "friend-tracker-button button-align-right",
+                        cls: "collaborator-tracker-button button-align-right",
                         text: this.plugin.t("add_interaction"),
                 });
 		addButton.addEventListener("click", () => {
@@ -703,7 +703,7 @@ export class ContactPageView extends ItemView {
                 }
 
                 const editButton = headerContainer.createEl("button", {
-                        cls: "friend-tracker-button button-align-right",
+                        cls: "collaborator-tracker-button button-align-right",
                         text: this.plugin.t("edit_markdown"),
                 });
 

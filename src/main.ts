@@ -1,19 +1,19 @@
 import { Plugin, Notice } from "obsidian";
-import { FriendTrackerSettings, DEFAULT_SETTINGS } from "./types";
+import { CollaboratorTrackerSettings, DEFAULT_SETTINGS } from "./types";
 import { loadIni, getPluginDir } from "./i18n";
 import {
-	FriendTrackerView,
-	VIEW_TYPE_FRIEND_TRACKER,
-} from "./views/FriendTrackerView";
+	CollaboratorTrackerView,
+	VIEW_TYPE_COLLABORATOR_TRACKER,
+} from "./views/CollaboratorTrackerView";
 import {
 	ContactPageView,
 	VIEW_TYPE_CONTACT_PAGE,
 } from "@/views/ContactPageView";
-import { FriendTrackerSettingTab } from "./views/FriendTrackerView/settings";
+import { CollaboratorTrackerSettingTab } from "./views/CollaboratorTrackerView/settings";
 import { ContactOperations } from "@/services/ContactOperations";
 
-export default class FriendTracker extends Plugin {
-        settings: FriendTrackerSettings;
+export default class CollaboratorTracker extends Plugin {
+        settings: CollaboratorTrackerSettings;
         public contactOperations: ContactOperations;
         private translations: Record<string, string> = {};
 
@@ -36,8 +36,8 @@ export default class FriendTracker extends Plugin {
 		try {
 			// Register views
 			this.registerView(
-				VIEW_TYPE_FRIEND_TRACKER,
-				(leaf) => new FriendTrackerView(leaf, this)
+				VIEW_TYPE_COLLABORATOR_TRACKER,
+				(leaf) => new CollaboratorTrackerView(leaf, this)
 			);
 
 			this.registerView(
@@ -46,16 +46,16 @@ export default class FriendTracker extends Plugin {
 			);
 
                         // Add ribbon icon
-                        this.addRibbonIcon("user", "Open Colaborador Tracker", async () => {
+                       this.addRibbonIcon("user", "Open Collaborator Tracker", async () => {
 				const workspace = this.app.workspace;
 				const leaves = workspace.getLeavesOfType(
-					VIEW_TYPE_FRIEND_TRACKER
+					VIEW_TYPE_COLLABORATOR_TRACKER
 				);
 
 				// Check for existing view, handling deferred views
 				for (const leaf of leaves) {
 					const view = await leaf.view;
-					if (view instanceof FriendTrackerView) {
+					if (view instanceof CollaboratorTrackerView) {
 						workspace.revealLeaf(leaf);
 						return;
 					}
@@ -64,23 +64,23 @@ export default class FriendTracker extends Plugin {
 				const leaf = workspace.getRightLeaf(false);
 				if (leaf) {
 					await leaf.setViewState({
-						type: VIEW_TYPE_FRIEND_TRACKER,
+						type: VIEW_TYPE_COLLABORATOR_TRACKER,
 						active: true,
 					});
 					workspace.revealLeaf(leaf);
                                 } else {
-                                        new Notice("Could not create Colaborador Tracker view");
+                                       new Notice("Could not create Collaborator Tracker view");
 				}
 			});
 
 			// Add settings tab
-			this.addSettingTab(new FriendTrackerSettingTab(this.app, this));
+			this.addSettingTab(new CollaboratorTrackerSettingTab(this.app, this));
 
 			// Check for birthdays after everything is initialized
 			await this.checkBirthdays();
 		} catch (error) {
-                        console.error("Colaborador Tracker failed to load:", error);
-                        new Notice("Colaborador Tracker failed to load: " + error.message);
+                       console.error("Collaborator Tracker failed to load:", error);
+                       new Notice("Collaborator Tracker failed to load: " + error.message);
 		}
 	}
 
