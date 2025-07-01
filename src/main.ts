@@ -66,45 +66,7 @@ export default class CollaboratorTracker extends Plugin {
 						return;
 					}
 				}
-
-				const leaf = workspace.getRightLeaf(false);
-				if (leaf) {
-					await leaf.setViewState({
-						type: VIEW_TYPE_COLLABORATOR_TRACKER,
-						active: true,
-					});
-					workspace.revealLeaf(leaf);
-                                } else {
-                                       new Notice("Could not create Collaborator Tracker view");
-				}
-			});
-
-			// Add settings tab
-			this.addSettingTab(new CollaboratorTrackerSettingTab(this.app, this));
-
-			// Check for birthdays after everything is initialized
-			await this.checkBirthdays();
-		} catch (error) {
-                       console.error("Collaborator Tracker failed to load:", error);
-                       new Notice("Collaborator Tracker failed to load: " + error.message);
-		}
-	}
-
-        private async checkBirthdays() {
-		const contacts = await this.contactOperations.getContacts();
-		const birthdayContacts = contacts.filter(
-			(c) => c.daysUntilBirthday === 0
-		);
-
-		if (birthdayContacts.length > 0) {
-			if (birthdayContacts.length === 1) {
-				new Notice(
-					`🎂 It's ${birthdayContacts[0].name}'s birthday today!`,
-					8000 // Show for 8 seconds
-				);
-			} else {
-				const names = birthdayContacts.map((c) => c.name);
-				const lastPerson = names.pop();
+@@ -102,55 +108,68 @@ export default class CollaboratorTracker extends Plugin {
                                 const nameList = names.join(", ") + " and " + lastPerson;
                                 new Notice(`🎂 It's ${nameList}'s birthday today!`, 8000);
                         }
