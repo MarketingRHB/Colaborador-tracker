@@ -8,6 +8,14 @@ import {
 } from "obsidian";
 import type CollaboratorTracker from "@/main";
 import type { ContactWithCountdown } from "@/types";
+import {
+        CollaboratorTrackerView,
+        VIEW_TYPE_COLLABORATOR_TRACKER,
+} from "./index";
+import {
+        ContactPageView,
+        VIEW_TYPE_CONTACT_PAGE,
+} from "@/views/ContactPageView";
 
 class FolderSuggest extends AbstractInputSuggest<string> {
 	inputEl: HTMLInputElement;
@@ -270,6 +278,28 @@ export class CollaboratorTrackerSettingTab extends PluginSettingTab {
                                                 this.plugin.settings.language = value;
                                                 await this.plugin.saveSettings();
                                                 await this.plugin.loadTranslations();
+
+                                                // Refresh all open plugin views to apply new translations
+                                                const trackerLeaves = this.app.workspace.getLeavesOfType(
+                                                        VIEW_TYPE_COLLABORATOR_TRACKER
+                                                );
+                                                for (const leaf of trackerLeaves) {
+                                                        const view = await leaf.view;
+                                                        if (view instanceof CollaboratorTrackerView) {
+                                                                await view.refresh();
+                                                        }
+                                                }
+
+                                                const contactLeaves = this.app.workspace.getLeavesOfType(
+                                                        VIEW_TYPE_CONTACT_PAGE
+                                                );
+                                                for (const leaf of contactLeaves) {
+                                                        const view = await leaf.view;
+                                                        if (view instanceof ContactPageView) {
+                                                                view.render();
+                                                        }
+                                                }
+
                                                 this.display();
                                         });
                         });
